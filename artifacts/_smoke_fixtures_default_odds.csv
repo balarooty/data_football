@@ -1,0 +1,6 @@
+api_match_id,competition_id,country,league,Date,Time,utc_date,match_datetime,HomeTeam,AwayTeam,status,odds_available,xg_available,FTHG,FTAG,FTR,odds_home,odds_draw,odds_away,odds_over25,odds_under25
+mt_363886821,comp_0976,Spain,LaLiga 2,17/04/2026,19:00,2026-04-17T19:00:00.000Z,2026-04-17T19:00:00+00:00,Las Palmas,Leganés,scheduled,True,False,,,,1.6824999999999999,3.8499999999999996,5.1225,1.8625,1.975
+mt_979109230,comp_8321,England,Championship,17/04/2026,19:00,2026-04-17T19:00:00.000Z,2026-04-17T19:00:00+00:00,Blackburn Rovers,Coventry City,scheduled,True,False,,,,4.1675,3.3275,1.9975,2.08,1.7799999999999998
+mt_191818673,comp_8385,Portugal,Liga Portugal Betclic,17/04/2026,19:45,2026-04-17T19:45:00.000Z,2026-04-17T19:45:00+00:00,Rio Ave,AVS - Futebol SAD,scheduled,True,False,,,,1.7149999999999999,3.8674999999999997,4.9725,1.925,1.9075
+mt_518568674,comp_6981,Peru,Liga 1,17/04/2026,20:00,2026-04-17T20:00:00.000Z,2026-04-17T20:00:00+00:00,Los Chankas CYC,Club Atlético Grau,scheduled,True,False,,,,1.6775000000000002,3.5525,5.4675,2.2325,1.6275000000000002
+mt_732053912,comp_4540,Argentina,Liga Profesional de Fútbol,17/04/2026,23:30,2026-04-17T23:30:00.000Z,2026-04-17T23:30:00+00:00,Club Atlético Unión de Santa Fe,Newell's Old Boys,scheduled,True,False,,,,1.585,3.805,6.695,2.26,1.6649999999999998

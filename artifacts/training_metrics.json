@@ -4,10 +4,16 @@
   "bookings_test_rows": 12959,
   "winner_accuracy": 0.4992677137518307,
   "winner_log_loss": 1.0075747070739893,
+  "winner_accuracy_blended": 0.5017928387455179,
+  "winner_log_loss_blended": 1.0049573470471895,
   "over_under_accuracy": 0.5662845310842887,
+  "over_under_accuracy_blended": 0.5715367910711581,
+  "over_under_log_loss_blended": 0.6768537940676199,
   "over_under_roc_auc": 0.5942223204714903,
   "bookings_mae": 1.6904456148558615,
   "bookings_rmse": 2.1156195299733045,
   "correct_score_exact_accuracy": 0.1318115246704712,
-  "correct_score_top3_accuracy": 0.34331599414171
+  "correct_score_top3_accuracy": 0.34331599414171,
+  "winner_blend_alpha": 0.1,
+  "ou_blend_alpha": 0.0
 }

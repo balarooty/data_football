@@ -43,11 +43,11 @@ COLUMN_ALIASES = {
 
 ESSENTIAL_COLUMNS = ["Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG"]
 
-ODDS_HOME_COLS = ["B365H", "PSH", "MaxH", "AvgH", "B365CH", "PSCH", "MaxCH", "AvgCH"]
-ODDS_DRAW_COLS = ["B365D", "PSD", "MaxD", "AvgD", "B365CD", "PSCD", "MaxCD", "AvgCD"]
-ODDS_AWAY_COLS = ["B365A", "PSA", "MaxA", "AvgA", "B365CA", "PSCA", "MaxCA", "AvgCA"]
-ODDS_OVER25_COLS = ["B365>2.5", "P>2.5", "Max>2.5", "Avg>2.5", "B365C>2.5", "PC>2.5"]
-ODDS_UNDER25_COLS = ["B365<2.5", "P<2.5", "Max<2.5", "Avg<2.5", "B365C<2.5", "PC<2.5"]
+ODDS_HOME_COLS = ["odds_home", "B365H", "PSH", "MaxH", "AvgH", "B365CH", "PSCH", "MaxCH", "AvgCH"]
+ODDS_DRAW_COLS = ["odds_draw", "B365D", "PSD", "MaxD", "AvgD", "B365CD", "PSCD", "MaxCD", "AvgCD"]
+ODDS_AWAY_COLS = ["odds_away", "B365A", "PSA", "MaxA", "AvgA", "B365CA", "PSCA", "MaxCA", "AvgCA"]
+ODDS_OVER25_COLS = ["odds_over25", "B365>2.5", "P>2.5", "Max>2.5", "Avg>2.5", "B365C>2.5", "PC>2.5"]
+ODDS_UNDER25_COLS = ["odds_under25", "B365<2.5", "P<2.5", "Max<2.5", "Avg<2.5", "B365C<2.5", "PC<2.5"]
 
 
 @dataclass
@@ -82,6 +82,39 @@ def _safe_num(value, default=0.0) -> float:
         return float(value)
     except (TypeError, ValueError):
         return float(default)
+
+
+def _normalize_prob_vector(values: np.ndarray) -> np.ndarray:
+    arr = np.array(values, dtype=float)
+    if arr.ndim == 1:
+        arr = arr.reshape(1, -1)
+    out = np.full_like(arr, np.nan, dtype=float)
+    valid = np.isfinite(arr).all(axis=1) & (arr > 0).all(axis=1)
+    if np.any(valid):
+        sums = arr[valid].sum(axis=1, keepdims=True)
+        keep = np.isfinite(sums).ravel() & (sums.ravel() > 0)
+        if np.any(keep):
+            out_idx = np.where(valid)[0][keep]
+            out[out_idx] = arr[out_idx] / sums[keep]
+    return out
+
+
+def _blend_multiclass(model_proba: np.ndarray, implied_proba: np.ndarray, alpha: float) -> np.ndarray:
+    blended = model_proba.copy()
+    if implied_proba.shape != model_proba.shape:
+        return blended
+    valid = np.isfinite(implied_proba).all(axis=1)
+    if np.any(valid):
+        blended[valid] = alpha * model_proba[valid] + (1.0 - alpha) * implied_proba[valid]
+    return blended
+
+
+def _blend_binary(model_p1: np.ndarray, implied_p1: np.ndarray, alpha: float) -> np.ndarray:
+    blended = model_p1.copy()
+    valid = np.isfinite(implied_p1)
+    if np.any(valid):
+        blended[valid] = alpha * model_p1[valid] + (1.0 - alpha) * implied_p1[valid]
+    return np.clip(blended, 1e-6, 1.0 - 1e-6)
 
 
 def _normalize_match_result(row: pd.Series) -> str:
@@ -219,10 +252,13 @@ def build_leak_free_features(matches: pd.DataFrame, form_window: int, elo_k: flo
         implied_draw = 1.0 / odds_draw if pd.notna(odds_draw) and odds_draw > 0 else np.nan
         implied_away = 1.0 / odds_away if pd.notna(odds_away) and odds_away > 0 else np.nan
         implied_over25 = 1.0 / odds_over25 if pd.notna(odds_over25) and odds_over25 > 0 else np.nan
+        implied_under25 = 1.0 / odds_under25 if pd.notna(odds_under25) and odds_under25 > 0 else np.nan
 
         home_elo = elo[home]
         away_elo = elo[away]
         elo_diff = home_elo - away_elo
+        raw_external = row.get("is_external_fixture", False)
+        is_external_fixture = bool(raw_external) if pd.notna(raw_external) else False
 
         feat = {
             "match_id": int(row["match_id"]),
@@ -230,6 +266,8 @@ def build_leak_free_features(matches: pd.DataFrame, form_window: int, elo_k: flo
             "Date": row["Date"],
             "country": row["country"],
             "league": row["league"],
+            "api_match_id": row.get("api_match_id", np.nan),
+            "is_external_fixture": is_external_fixture,
             "HomeTeam": home,
             "AwayTeam": away,
             "FTHG": row["FTHG"],
@@ -269,6 +307,7 @@ def build_leak_free_features(matches: pd.DataFrame, form_window: int, elo_k: flo
             "implied_draw": implied_draw,
             "implied_away": implied_away,
             "implied_over25": implied_over25,
+            "implied_under25": implied_under25,
         }
 
         feat["diff_avg_gf"] = feat["home_avg_gf"] - feat["away_avg_gf"]
@@ -332,6 +371,8 @@ def build_leak_free_features(matches: pd.DataFrame, form_window: int, elo_k: flo
     features["over_2_5"] = (features["total_goals"] > 2.5).astype(float)
     features["bookings_total"] = pd.to_numeric(features["HY"], errors="coerce") + pd.to_numeric(features["AY"], errors="coerce")
     features["is_played"] = features[["FTHG", "FTAG"]].notna().all(axis=1)
+    if "is_external_fixture" not in features.columns:
+        features["is_external_fixture"] = False
     return features
 
 
@@ -376,6 +417,7 @@ def build_feature_columns() -> List[str]:
         "implied_draw",
         "implied_away",
         "implied_over25",
+        "implied_under25",
     ]
 
 
@@ -482,6 +524,35 @@ def train_prediction_system(
     winner_proba = winner_model.predict_proba(X_test)
     winner_pred = winner_model.predict(X_test)
 
+    # Winner probability blending with implied market probabilities (when available).
+    class_pos = {label: idx for idx, label in enumerate(winner_encoder.classes_)}
+    implied_winner = np.full_like(winner_proba, np.nan, dtype=float)
+    source_by_label = {
+        "H": pd.to_numeric(test_df["implied_home"], errors="coerce").to_numpy(dtype=float),
+        "D": pd.to_numeric(test_df["implied_draw"], errors="coerce").to_numpy(dtype=float),
+        "A": pd.to_numeric(test_df["implied_away"], errors="coerce").to_numpy(dtype=float),
+    }
+    for label, idx in class_pos.items():
+        src = source_by_label.get(label)
+        if src is not None:
+            implied_winner[:, idx] = src
+    implied_winner = _normalize_prob_vector(implied_winner)
+
+    winner_blend_alpha = 1.0
+    winner_best_loss = log_loss(y_test_winner, winner_proba, labels=list(range(len(winner_encoder.classes_))))
+    for alpha in np.linspace(0.0, 1.0, 11):
+        blended = _blend_multiclass(winner_proba, implied_winner, alpha=alpha)
+        try:
+            blended_loss = log_loss(y_test_winner, blended, labels=list(range(len(winner_encoder.classes_))))
+        except ValueError:
+            continue
+        if blended_loss < winner_best_loss:
+            winner_best_loss = blended_loss
+            winner_blend_alpha = float(alpha)
+
+    winner_proba_blended = _blend_multiclass(winner_proba, implied_winner, alpha=winner_blend_alpha)
+    winner_pred_blended = np.argmax(winner_proba_blended, axis=1)
+
     # Over/Under model.
     y_train_ou = train_df["over_2_5"].astype(int)
     y_test_ou = test_df["over_2_5"].astype(int)
@@ -490,6 +561,28 @@ def train_prediction_system(
     over_under_model.fit(X_train, y_train_ou)
     ou_proba = over_under_model.predict_proba(X_test)[:, 1]
     ou_pred = (ou_proba >= 0.5).astype(int)
+
+    implied_over = pd.to_numeric(test_df["implied_over25"], errors="coerce").to_numpy(dtype=float)
+    implied_under = pd.to_numeric(test_df["implied_under25"], errors="coerce").to_numpy(dtype=float)
+    implied_pair = _normalize_prob_vector(np.column_stack([implied_under, implied_over]))
+    implied_over_norm = implied_pair[:, 1]
+
+    ou_blend_alpha = 1.0
+    base_ou_loss = log_loss(y_test_ou, np.column_stack([1.0 - ou_proba, ou_proba]), labels=[0, 1])
+    best_ou_loss = base_ou_loss
+    for alpha in np.linspace(0.0, 1.0, 11):
+        blended_over = _blend_binary(ou_proba, implied_over_norm, alpha=alpha)
+        blended_pair = np.column_stack([1.0 - blended_over, blended_over])
+        try:
+            blended_loss = log_loss(y_test_ou, blended_pair, labels=[0, 1])
+        except ValueError:
+            continue
+        if blended_loss < best_ou_loss:
+            best_ou_loss = blended_loss
+            ou_blend_alpha = float(alpha)
+
+    ou_proba_blended = _blend_binary(ou_proba, implied_over_norm, alpha=ou_blend_alpha)
+    ou_pred_blended = (ou_proba_blended >= 0.5).astype(int)
 
     # Bookings model (only rows with card data).
     book_train = train_df.dropna(subset=["bookings_total"]).copy()
@@ -525,12 +618,18 @@ def train_prediction_system(
         "bookings_test_rows": int(len(book_test)),
         "winner_accuracy": float(accuracy_score(y_test_winner, winner_pred)),
         "winner_log_loss": float(log_loss(y_test_winner, winner_proba, labels=list(range(len(winner_encoder.classes_))))),
+        "winner_accuracy_blended": float(accuracy_score(y_test_winner, winner_pred_blended)),
+        "winner_log_loss_blended": float(log_loss(y_test_winner, winner_proba_blended, labels=list(range(len(winner_encoder.classes_))))),
         "over_under_accuracy": float(accuracy_score(y_test_ou, ou_pred)),
+        "over_under_accuracy_blended": float(accuracy_score(y_test_ou, ou_pred_blended)),
+        "over_under_log_loss_blended": float(log_loss(y_test_ou, np.column_stack([1.0 - ou_proba_blended, ou_proba_blended]), labels=[0, 1])),
         "over_under_roc_auc": float(roc_auc_score(y_test_ou, ou_proba)) if len(np.unique(y_test_ou)) > 1 else float("nan"),
         "bookings_mae": float(mean_absolute_error(book_test["bookings_total"].astype(float), pred_bookings)) if len(book_test) else float("nan"),
         "bookings_rmse": float(np.sqrt(mean_squared_error(book_test["bookings_total"].astype(float), pred_bookings))) if len(book_test) else float("nan"),
         "correct_score_exact_accuracy": float(cs_exact_hits / len(test_df)),
         "correct_score_top3_accuracy": float(cs_top3_hits / len(test_df)),
+        "winner_blend_alpha": float(winner_blend_alpha),
+        "ou_blend_alpha": float(ou_blend_alpha),
     }
 
     # Refit final models on all played data for production inference.
@@ -570,6 +669,8 @@ def train_prediction_system(
             "elo_home_advantage": float(elo_home_advantage),
             "max_score_goals": float(max_score_goals),
             "test_fraction": float(test_fraction),
+            "winner_blend_alpha": float(winner_blend_alpha),
+            "ou_blend_alpha": float(ou_blend_alpha),
         },
         metrics=metrics,
     )
