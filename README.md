@@ -6,6 +6,7 @@ This project now includes:
 2. A **4-target prediction trainer** (`prediction_system.py`)
 3. A **fixture prediction generator** (`predict_fixtures.py`)
 4. A **TheStatsAPI upcoming fixture fetcher** (`fetch_upcoming_fixtures_api.py`)
+5. A **one-command retrain pipeline with Google Sheet cleaning** (`retrain_with_sheet_pipeline.py`)
 
 All models are trained **only from your local `data/` CSV files**.
 
@@ -124,3 +125,31 @@ python3 predict_fixtures.py --fixtures-csv artifacts/upcoming_fixtures_api.csv
 ```
 
 This keeps your files updated, retrains the models, and outputs fresh predictions for your agent.
+
+## One-Command Sheet + Retrain + Predict
+
+This command always:
+1. pulls and cleans your Google Sheet
+2. retrains the model bundle
+3. predicts fixtures from the cleaned sheet
+
+```bash
+python3 retrain_with_sheet_pipeline.py
+```
+
+Main outputs:
+- `artifacts/sheet_predictions_cleaned.csv`
+- `artifacts/sheet_cleaning_diagnostics.json`
+- `artifacts/football_prediction_bundle.joblib`
+- `artifacts/upcoming_predictions_from_sheet.csv`
+
+Tracking outputs (every run):
+- `artifacts/prediction_history.csv` (append-only ledger of all predictions with `run_id`)
+- `artifacts/runs/<run_id>/` (immutable snapshot folder for each run)
+- `artifacts/runs/<run_id>/run_manifest.json` (run metadata + key metrics)
+
+Optional custom run id:
+
+```bash
+python3 retrain_with_sheet_pipeline.py --run-id MY_RUN_2026_04_17
+```

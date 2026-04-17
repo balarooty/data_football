@@ -59,6 +59,17 @@ def parse_args() -> argparse.Namespace:
         default=3,
         help="when using local unplayed fixtures, keep only rows with datetime >= (now - lookback_days)",
     )
+    parser.add_argument(
+        "--run-id",
+        default=None,
+        help="optional run identifier for tracking/lineage",
+    )
+    parser.add_argument(
+        "--history-csv",
+        type=Path,
+        default=None,
+        help="optional append-only prediction history CSV",
+    )
     return parser.parse_args()
 
 
@@ -95,6 +106,28 @@ def _blend_binary(model_p1: np.ndarray, implied_p1: np.ndarray, alpha: float) ->
     return np.clip(blended, 1e-6, 1.0 - 1e-6)
 
 
+def _append_history(history_path: Path, new_rows: pd.DataFrame) -> int:
+    history_path.parent.mkdir(parents=True, exist_ok=True)
+
+    if history_path.exists():
+        old = pd.read_csv(history_path)
+        combined = pd.concat([old, new_rows], ignore_index=True, sort=False)
+    else:
+        combined = new_rows.copy()
+
+    if "api_match_id" in combined.columns and combined["api_match_id"].notna().any():
+        dedupe_cols = ["run_id", "api_match_id"]
+    else:
+        dedupe_cols = ["run_id", "Date", "country", "league", "HomeTeam", "AwayTeam"]
+
+    dedupe_cols = [c for c in dedupe_cols if c in combined.columns]
+    if dedupe_cols:
+        combined = combined.drop_duplicates(subset=dedupe_cols, keep="last")
+
+    combined.to_csv(history_path, index=False)
+    return int(len(combined))
+
+
 def _prepare_external_fixtures(fixtures_csv: Path) -> pd.DataFrame:
     if not fixtures_csv.exists():
         raise FileNotFoundError(f"Fixtures CSV not found: {fixtures_csv}")
@@ -103,7 +136,25 @@ def _prepare_external_fixtures(fixtures_csv: Path) -> pd.DataFrame:
     if ext.empty:
         return ext
 
-    ext = ext.rename(columns={"Home": "HomeTeam", "Away": "AwayTeam"}).copy()
+    ext = ext.rename(
+        columns={
+            "Home": "HomeTeam",
+            "Away": "AwayTeam",
+            "Home Team": "HomeTeam",
+            "Away Team": "AwayTeam",
+            "Country": "country",
+            "League": "league",
+        }
+    ).copy()
+    # Some cleaned files can contain both normalized and original columns.
+    # Keep first occurrence per name so downstream concat has unique columns.
+    ext = ext.loc[:, ~ext.columns.duplicated()].copy()
+
+    if "Date" not in ext.columns and "date" in ext.columns:
+        parsed_date = pd.to_datetime(ext["date"], errors="coerce")
+        ext["Date"] = parsed_date.dt.strftime("%d/%m/%Y")
+    if "Time" not in ext.columns:
+        ext["Time"] = np.nan
 
     required = ["Date", "HomeTeam", "AwayTeam"]
     missing = [col for col in required if col not in ext.columns]
@@ -134,9 +185,29 @@ def _prepare_external_fixtures(fixtures_csv: Path) -> pd.DataFrame:
         "odds_under25",
         "api_match_id",
         "match_datetime",
+        "p_home_win",
+        "p_draw",
+        "p_away_win",
+        "p_over_2_5",
+        "p_under_2_5",
     ]:
         if col not in ext.columns:
             ext[col] = np.nan
+
+    # If sheet priors are available, convert them into implied odds when odds are missing.
+    for prob_col, odds_col in [
+        ("p_home_win", "odds_home"),
+        ("p_draw", "odds_draw"),
+        ("p_away_win", "odds_away"),
+        ("p_over_2_5", "odds_over25"),
+        ("p_under_2_5", "odds_under25"),
+    ]:
+        p = pd.to_numeric(ext[prob_col], errors="coerce")
+        o = pd.to_numeric(ext[odds_col], errors="coerce")
+        implied = 1.0 / p.replace(0, np.nan)
+        use_implied = o.isna() & p.notna() & (p > 0)
+        o = o.where(~use_implied, implied)
+        ext[odds_col] = o
 
     ext["country"] = ext["country"].fillna("api")
     ext["league"] = ext["league"].fillna("api")
@@ -273,7 +344,10 @@ def main() -> int:
     out = upcoming[["Date", "country", "league", "HomeTeam", "AwayTeam"]].copy()
     if "api_match_id" in upcoming.columns:
         out["api_match_id"] = upcoming["api_match_id"]
-    out["generated_at_utc"] = datetime.now(UTC).isoformat(timespec="seconds")
+    generated_at = datetime.now(UTC).isoformat(timespec="seconds")
+    run_id = args.run_id.strip() if args.run_id else generated_at.replace(":", "").replace("-", "").replace("+00:00", "Z")
+    out["generated_at_utc"] = generated_at
+    out["run_id"] = run_id
 
     out["p_over_2_5"] = p_over
     out["p_under_2_5"] = 1.0 - p_over
@@ -289,15 +363,25 @@ def main() -> int:
     out["expected_away_goals"] = away_lambda
     out["pred_correct_score"] = score_preds
     out["pred_correct_score_top3"] = score_top3
+    out["model_created_at_utc"] = str(bundle.get("created_at_utc", ""))
+    out["model_artifact_path"] = str(args.artifact_path)
+    out["fixtures_source_csv"] = str(args.fixtures_csv) if args.fixtures_csv is not None else ""
 
     args.output_path.parent.mkdir(parents=True, exist_ok=True)
     args.json_output_path.parent.mkdir(parents=True, exist_ok=True)
     out.to_csv(args.output_path, index=False)
     out.to_json(args.json_output_path, orient="records", indent=2)
 
+    history_total = None
+    if args.history_csv is not None:
+        history_total = _append_history(args.history_csv, out)
+
     print(f"Upcoming fixtures predicted: {len(out)}")
     print(f"CSV:  {args.output_path}")
     print(f"JSON: {args.json_output_path}")
+    if args.history_csv is not None:
+        print(f"History: {args.history_csv} (rows: {history_total})")
+    print(f"Run ID: {run_id}")
     return 0
 
 

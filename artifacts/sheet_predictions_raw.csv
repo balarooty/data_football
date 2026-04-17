@@ -1,0 +1,178 @@
+Date,Country,League,Home Team,Away Team,Best Pick,P(Draw),Predicted Winner,P(Home Win),P(Away Win),Confidence,Expected Home Goals,Expected Away Goals,Expected Score,Top 3 Scores,P(Over 2.5),P(Under 2.5),O/U Lean,Expected Bookings
+18/04/2026,Finland,Veikkausliiga,AC Oulu,VPS,"AC Oulu Win, Over 2.5",10.2,AC Oulu Win,49.8,40.0,MODERATE,1.58,12-31,1-1,1-1 (11.2%) | 2-1 (8.8%) | 1-2 (7.9%),81.3,18.7,Over,3.8
+18/04/2026,England,National League,York City,Yeovil Town,"York City Win, 3-0, Over 2.5",10.9,York City Win,84.4,4.8,HIGH,3.01,12-30,3-0,3-0 (12.6%) | 2-0 (12.5%) | 4-0 (9.5%),70.7,29.3,Over,3.1
+18/04/2026,Argentina,Liga Profesional de Fútbol,Gimnasia y Esgrima,Estudiantes de Río Cuarto,"Estudiantes de Río Cuarto Win, 1-1, Over 2.5",11.1,Estudiantes de Río Cuarto Win,34.0,54.9,HIGH,1.44,1.39,1-1,1-1 (11.8%) | 2-1 (8.5%) | 1-0 (8.5%),79.8,20.2,Over,4.0
+18/04/2026,Chile,Chilean Primera División,Deportes Limache,Universidad de Concepción,"Universidad de Concepción Win, 1-1, Over 2.5",11.1,Universidad de Concepción Win,34.0,54.9,HIGH,1.44,1.39,1-1,1-1 (11.8%) | 2-1 (8.5%) | 1-0 (8.5%),79.8,20.2,Over,4.0
+18/04/2026,China,CFA Super League,Dalian Yingbo FC,Henan FC Jiuzu Dukang,"Henan FC Jiuzu Dukang Win, 1-1, Over 2.5",11.1,Henan FC Jiuzu Dukang Win,34.0,54.9,HIGH,1.44,1.39,1-1,1-1 (11.8%) | 2-1 (8.5%) | 1-0 (8.5%),79.8,20.2,Over,4.0
+18/04/2026,Peru,Liga 1,FC Cajamarca,Asociación Deportiva Tarma,"Asociación Deportiva Tarma Win, 1-1, Over 2.5",11.1,Asociación Deportiva Tarma Win,34.0,54.9,HIGH,1.44,12-31,1-1,1-1 (11.8%) | 2-1 (8.5%) | 1-0 (8.5%),79.8,20.2,Over,4.0
+18/04/2026,Norway,Eliteserien,Bodø/Glimt,Aalesunds FK,"Bodø/Glimt Win, 2-0, Over 2.5",11.2,Bodø/Glimt Win,82.2,6.6,HIGH,2.85,0.58,2-0,2-0 (13.2%) | 3-0 (12.5%) | 1-0 (9.2%),76.7,23.3,Over,2.5
+18/04/2026,USA,MLS,Vancouver Whitecaps,Sporting Kansas City,"Vancouver Whitecaps Win, 2-0, Over 2.5",11.3,Vancouver Whitecaps Win,83.0,5.7,HIGH,2.93,12-30,2-0,2-0 (11.2%) | 3-0 (10.9%) | 4-0 (8.0%),73.7,26.3,Over,2.8
+18/04/2026,Finland,Veikkausliiga,TPS,SJK,"SJK Win, Over 2.5",12.2,SJK Win,39.6,48.2,MODERATE,1.61,12-31,1-1,1-1 (10.9%) | 2-1 (8.7%) | 1-2 (8.0%),82.9,17.1,Over,4.0
+18/04/2026,Finland,Ykkösliiga,Jippo Joensuu,KTP,Over 2.5,13.0,KTP Win,42.3,44.8,MODERATE,1.49,12-31,1-1,1-1 (11.6%) | 2-1 (8.6%) | 1-0 (8.3%),82.9,17.1,Over,3.9
+18/04/2026,Sweden,Allsvenskan,Hammarby IF,Örgryte IS,"Hammarby IF Win, 2-0, Over 2.5",14.3,Hammarby IF Win,77.3,8.4,HIGH,2.64,12-30,2-0,2-0 (13.0%) | 3-0 (11.4%) | 1-0 (9.8%),67.0,33.0,Over,3.9
+17/04/2026,Italy,Serie A,Inter,Cagliari,"Inter Win, 2-0, Over 2.5",15.0,Inter Win,77.9,7.0,HIGH,2.57,12-30,2-0,2-0 (13.2%) | 3-0 (11.3%) | 1-0 (10.3%),60.0,40.0,Over,4.1
+18/04/2026,England,National League,Braintree Town,Rochdale,"Rochdale Win, 0-2, Over 2.5",17.0,Rochdale Win,9.6,73.3,HIGH,0.8,1-1,0-2,0-2 (11.9%) | 0-1 (10.3%) | 1-2 (9.5%),59.8,40.2,Over,3.2
+17/04/2026,Turkey,Trendyol Süper Lig,Fenerbahçe,Çaykur Rizespor,"Fenerbahçe Win, 2-0, Over 2.5",17.4,Fenerbahçe Win,72.0,10.6,HIGH,2.4,0.66,2-0,2-0 (13.5%) | 1-0 (11.3%) | 3-0 (10.8%),64.6,35.4,Over,3.8
+17/04/2026,Germany,2. Bundesliga,SV 07 Elversberg,Karlsruher SC,"SV 07 Elversberg Win, 2-0, Over 2.5",18.3,SV 07 Elversberg Win,67.0,14.7,HIGH,2.4,0.86,2-0,2-0 (11.0%) | 2-1 (9.5%) | 1-0 (9.2%),68.5,31.5,Over,3.8
+18/04/2026,Germany,Bundesliga,Bayer 04 Leverkusen,FC Augsburg,"Bayer 04 Leverkusen Win, 2-0, Over 2.5",18.5,Bayer 04 Leverkusen Win,68.7,12.8,HIGH,2.4,12-30,2-0,2-0 (12.1%) | 1-0 (10.1%) | 3-0 (9.6%),65.6,34.4,Over,3.8
+18/04/2026,Turkey,Trendyol Süper Lig,Gençlerbirliği,Galatasaray,"Galatasaray Win, 0-2, Over 2.5",18.9,Galatasaray Win,12.3,68.8,HIGH,0.83,1-1,0-2,0-2 (11.6%) | 0-1 (10.2%) | 1-2 (9.6%),60.0,40.0,Over,4.0
+18/04/2026,China,CFA Super League,Shanghai Shenhua,Liaoning Tieren FC,"Shanghai Shenhua Win, 2-0, Over 2.5",19.2,Shanghai Shenhua Win,66.8,14.0,HIGH,2.35,0.84,2-0,2-0 (11.4%) | 1-0 (9.7%) | 2-1 (9.5%),60.7,39.3,Over,3.3
+18/04/2026,Mexico,"Liga MX, Clausura",Cruz Azul,Club Tijuana,"Cruz Azul Win, 2-0, Over 2.5",19.3,Cruz Azul Win,67.3,13.4,HIGH,2.3,12-30,2-0,2-0 (11.1%) | 1-0 (9.7%) | 2-1 (9.7%),64.2,35.8,Over,3.4
+17/04/2026,China,CFA Super League,Wuhan Three Towns,Chengdu Rongcheng,"Chengdu Rongcheng Win, 0-2, Over 2.5",19.9,Chengdu Rongcheng Win,14.1,66.0,HIGH,0.91,2.22,0-2,0-2 (10.8%) | 1-2 (9.8%) | 0-1 (9.7%),59.2,40.8,Over,3.5
+17/04/2026,France,Ligue 1,RC Lens,Toulouse,"RC Lens Win, 2-0",20.7,RC Lens Win,64.9,14.4,HIGH,2.16,0.81,2-0,2-0 (12.0%) | 1-0 (11.1%) | 2-1 (9.7%),57.1,42.9,Over,4.1
+18/04/2026,Australia,A-League Men,Sydney FC,Perth Glory,"Sydney FC Win, 2-0, Over 2.5",20.8,Sydney FC Win,62.3,16.9,HIGH,2.15,0.99,2-0,2-0 (10.0%) | 2-1 (9.9%) | 1-0 (9.3%),61.8,38.2,Over,4.0
+18/04/2026,England,National League,Morecambe,Boreham Wood,"Boreham Wood Win, 1-2, Over 2.5",20.8,Boreham Wood Win,19.8,59.4,HIGH,1.14,1-1,1-2,1-2 (9.9%) | 1-1 (9.7%) | 0-2 (8.7%),70.3,29.7,Over,3.2
+18/04/2026,Italy,Serie B,Bari,Venezia,"Venezia Win, 0-2, Over 2.5",21.0,Venezia Win,14.7,64.3,HIGH,0.89,1-1,0-2,0-2 (11.0%) | 0-1 (10.2%) | 1-2 (9.8%),60.1,39.9,Over,3.8
+17/04/2026,China,CFA Super League,Yunnan Yukun,Tianjin Jinmen Tiger,"Yunnan Yukun Win, 2-0, Over 2.5",21.2,Yunnan Yukun Win,63.1,15.7,HIGH,2.12,0.96,2-0,2-0 (10.3%) | 2-1 (9.9%) | 1-0 (9.7%),61.2,38.8,Over,3.7
+18/04/2026,Finland,Veikkausliiga,IF Gnistan,HJK,"HJK Win, 1-2, Over 2.5",21.4,HJK Win,18.6,60.0,HIGH,1.13,1-1,1-2,1-2 (9.9%) | 1-1 (9.7%) | 0-2 (8.8%),66.2,33.8,Over,3.6
+18/04/2026,Japan,J1 League,Sanfrecce Hiroshima,V-Varen Nagasaki,"Sanfrecce Hiroshima Win, 2-0",21.6,Sanfrecce Hiroshima Win,63.5,14.9,HIGH,2.07,12-30,2-0,2-0 (10.7%) | 1-0 (10.3%) | 2-1 (9.9%),55.7,44.3,Over,3.6
+18/04/2026,Sweden,Allsvenskan,Mjällby AIF,IF Brommapojkarna,"Mjällby AIF Win, 2-0",21.7,Mjällby AIF Win,63.0,15.3,HIGH,2.07,12-30,2-0,2-0 (12.0%) | 1-0 (11.6%) | 2-1 (9.7%),55.3,44.7,Over,3.9
+17/04/2026,Italy,Serie A,Sassuolo,Como,"Como Win, 0-2",22.0,Como Win,15.6,62.4,HIGH,0.87,2.08,0-2,0-2 (11.4%) | 0-1 (10.9%) | 1-2 (9.8%),56.4,43.6,Over,3.7
+18/04/2026,France,Ligue 1,Lille,Nice,"Lille Win, 1-0",22.0,Lille Win,63.8,14.2,HIGH,2.0,12-30,1-0,1-0 (12.0%) | 2-0 (11.9%) | 1-1 (9.8%),53.3,46.7,Over,3.9
+18/04/2026,Finland,Veikkausliiga,FF Jaro,KuPS,"KuPS Win, 0-2",22.2,KuPS Win,16.7,61.1,HIGH,0.98,1-1,0-2,0-2 (10.1%) | 1-2 (10.0%) | 0-1 (9.9%),57.9,42.1,Over,3.8
+18/04/2026,France,Ligue 2,Troyes,US Boulogne Côte-d'Opale,"Troyes Win, 1-0",22.5,Troyes Win,62.4,15.1,HIGH,1.9,12-30,1-0,1-0 (12.5%) | 2-0 (11.9%) | 1-1 (10.3%),51.9,48.1,Over,3.9
+18/04/2026,England,League One,Reading,Cardiff City,"Cardiff City Win, 1-1, Over 2.5",22.7,Cardiff City Win,20.9,56.3,HIGH,1.11,12-31,1-1,1-1 (10.5%) | 1-2 (9.9%) | 0-1 (9.5%),58.3,41.7,Over,3.7
+18/04/2026,USA,MLS,Colorado Rapids,Inter Miami CF,"Inter Miami CF Win, 1-1, Over 2.5",22.7,Inter Miami CF Win,26.2,51.1,HIGH,1.18,1.9,1-1,1-1 (10.3%) | 1-2 (9.8%) | 0-1 (8.8%),68.5,31.5,Over,3.7
+18/04/2026,Norway,Eliteserien,Viking FK,SK Brann,"Viking FK Win, 2-1, Over 2.5",22.8,Viking FK Win,52.2,25.1,HIGH,2.11,12-31,2-1,2-1 (9.7%) | 1-1 (9.2%) | 2-0 (7.8%),64.1,35.9,Over,3.8
+18/04/2026,Italy,Serie B,Palermo,Cesena,"Palermo Win, 2-0",22.9,Palermo Win,60.6,16.5,HIGH,2.05,12-30,2-0,2-0 (10.6%) | 1-0 (10.3%) | 2-1 (9.9%),55.1,44.9,Over,4.7
+18/04/2026,England,Championship,Swansea City,Southampton,"Southampton Win, 1-1",23.0,Southampton Win,23.7,53.2,HIGH,1.08,1.91,1-1,1-1 (10.4%) | 1-2 (9.9%) | 0-1 (9.6%),53.7,46.3,Over,3.8
+17/04/2026,France,Ligue 2,Rodez AF,Amiens SC,"Rodez AF Win, 1-1",23.2,Rodez AF Win,57.8,19.1,HIGH,1.98,1.03,1-1,1-1 (10.0%) | 2-1 (10.0%) | 1-0 (9.8%),56.4,43.6,Over,4.0
+18/04/2026,Italy,Serie A,Napoli,Lazio,"Napoli Win, 1-0",23.4,Napoli Win,63.2,13.4,HIGH,1.84,12-30,1-0,1-0 (13.9%) | 2-0 (12.8%) | 1-1 (10.3%),43.6,56.4,Under,3.6
+18/04/2026,France,Ligue 1,Lorient,Olympique de Marseille,"Olympique de Marseille Win, 1-1",23.5,Olympique de Marseille Win,22.2,54.3,HIGH,1.04,1.88,1-1,1-1 (10.6%) | 0-1 (10.2%) | 1-2 (9.9%),56.8,43.2,Over,3.6
+18/04/2026,Sweden,Allsvenskan,IK Sirius,Västerås SK,"IK Sirius Win, 1-0",23.5,IK Sirius Win,58.7,17.8,HIGH,1.93,0.97,1-0,1-0 (10.6%) | 1-1 (10.3%) | 2-0 (10.2%),54.8,45.2,Over,4.0
+18/04/2026,England,Premier League,Leeds United,Wolverhampton,"Leeds United Win, 1-0",23.6,Leeds United Win,60.3,16.1,HIGH,1.84,12-30,1-0,1-0 (13.0%) | 2-0 (12.0%) | 1-1 (10.5%),50.7,49.3,Over,4.0
+18/04/2026,England,League Two,Swindon Town,Accrington Stanley,"Swindon Town Win, 1-0",23.9,Swindon Town Win,57.2,19.0,HIGH,1.79,12-30,1-0,1-0 (11.3%) | 1-1 (11.0%) | 2-0 (10.1%),51.6,48.4,Over,4.0
+18/04/2026,USA,MLS,Orlando City SC,Houston Dynamo,Over 2.5,23.9,Orlando City SC Win,38.2,37.9,MODERATE,1.65,12-31,1-1,1-1 (9.5%) | 1-2 (8.5%) | 2-1 (7.8%),62.0,38.0,Over,3.8
+17/04/2026,Australia,A-League Men,Melbourne Victory,Newcastle Jets,Over 2.5,24.0,Melbourne Victory Win,43.4,32.5,MODERATE,1.78,1.48,1-1,1-1 (10.1%) | 2-1 (9.0%) | 1-2 (7.5%),69.6,30.4,Over,3.9
+18/04/2026,England,League One,Northampton Town,Doncaster Rovers,"Doncaster Rovers Win, 0-1",24.0,Doncaster Rovers Win,20.8,55.2,HIGH,0.99,12-31,0-1,0-1 (11.0%) | 1-1 (10.9%) | 0-2 (9.9%),52.4,47.6,Over,3.7
+18/04/2026,Australia,A-League Men,Wellington Phoenix,Western Sydney Wanderers,Over 2.5,24.2,Wellington Phoenix Win,40.7,35.2,MODERATE,1.72,12-31,1-1,1-1 (9.9%) | 2-1 (8.5%) | 1-2 (8.0%),62.4,37.6,Over,3.9
+18/04/2026,England,League One,Leyton Orient,Rotherham United,"Leyton Orient Win, 1-0",24.2,Leyton Orient Win,57.9,17.9,HIGH,1.79,0.89,1-0,1-0 (12.3%) | 2-0 (11.0%) | 1-1 (10.9%),50.5,49.5,Over,4.0
+18/04/2026,Germany,Bundesliga,Eintracht Frankfurt,RB Leipzig,"RB Leipzig Win, Over 2.5",24.2,RB Leipzig Win,26.4,49.4,MODERATE,1.33,12-31,1-1,1-1 (9.9%) | 1-2 (9.5%) | 0-1 (7.5%),65.6,34.4,Over,3.9
+18/04/2026,Germany,Bundesliga,TSG Hoffenheim,Borussia Dortmund,Over 2.5,24.3,Borussia Dortmund Win,36.7,39.0,MODERATE,1.6,1.76,1-1,1-1 (9.8%) | 1-2 (8.6%) | 2-1 (7.8%),63.8,36.2,Over,3.9
+17/04/2026,France,Ligue 2,Le Mans,Clermont Foot,"Le Mans Win, 1-0",24.5,Le Mans Win,57.6,17.9,HIGH,1.77,0.92,1-0,1-0 (12.1%) | 1-1 (11.1%) | 2-0 (10.7%),51.9,48.1,Over,4.3
+18/04/2026,England,Championship,Millwall,Queens Park Rangers,"Millwall Win, 1-0",24.6,Millwall Win,56.7,18.7,HIGH,1.75,0.9,1-0,1-0 (12.4%) | 1-1 (11.1%) | 2-0 (10.8%),52.2,47.8,Over,3.8
+17/04/2026,Portugal,Liga Portugal Betclic,Rio Ave,AVS - Futebol SAD,"Rio Ave Win, 1-0",24.7,Rio Ave Win,56.4,19.0,HIGH,1.74,0.89,1-0,1-0 (12.5%) | 1-1 (11.2%) | 2-0 (10.9%),49.8,50.2,Under,4.4
+17/04/2026,Spain,LaLiga 2,Las Palmas,Leganés,"Las Palmas Win, 1-0",24.7,Las Palmas Win,57.0,18.3,HIGH,1.77,12-30,1-0,1-0 (12.3%) | 1-1 (11.0%) | 2-0 (10.9%),51.5,48.5,Over,3.9
+18/04/2026,England,Championship,Wrexham,Stoke City,"Wrexham Win, 1-0",24.7,Wrexham Win,54.5,20.8,HIGH,1.7,0.98,1-0,1-0 (11.7%) | 1-1 (11.4%) | 2-0 (9.9%),52.6,47.4,Over,3.6
+18/04/2026,England,League One,AFC Wimbledon,Plymouth Argyle,"Plymouth Argyle Win, 1-1",24.7,Plymouth Argyle Win,23.8,51.6,HIGH,1.02,1.81,1-1,1-1 (10.9%) | 0-1 (10.7%) | 1-2 (9.9%),56.2,43.8,Over,3.7
+18/04/2026,Finland,Veikkausliiga,IFK Mariehamn,Ilves,"Ilves Win, 1-1",24.8,Ilves Win,19.3,55.9,HIGH,1.07,12-31,1-1,1-1 (11.0%) | 0-1 (10.3%) | 1-2 (9.8%),57.3,42.7,Over,3.8
+18/04/2026,England,National League,Sutton United,Altrincham,"Sutton United Win, Over 2.5",24.9,Sutton United Win,47.3,27.8,MODERATE,1.82,12-31,1-1,1-1 (10.4%) | 2-1 (9.4%) | 1-0 (7.8%),61.8,38.2,Over,3.9
+18/04/2026,Brazil,Brasileirão Série A,Cruzeiro,Grêmio,"Cruzeiro Win, 1-0",25.1,Cruzeiro Win,56.8,18.0,HIGH,1.72,0.88,1-0,1-0 (12.8%) | 1-1 (11.2%) | 2-0 (11.0%),47.7,52.3,Under,3.7
+18/04/2026,England,League One,Exeter City,Stockport County,Stockport County Win,25.1,Stockport County Win,25.9,49.0,MODERATE,1.21,1.73,1-1,1-1 (11.1%) | 1-2 (9.6%) | 0-1 (9.2%),55.8,44.2,Over,3.8
+18/04/2026,England,National League,Wealdstone,Scunthorpe United,Over 2.5,25.1,Scunthorpe United Win,36.8,38.1,MODERATE,1.51,12-31,1-1,1-1 (10.9%) | 1-2 (8.6%) | 2-1 (8.2%),60.0,40.0,Over,3.7
+18/04/2026,Spain,LaLiga 2,Real Zaragoza,AD Ceuta,"Real Zaragoza Win, 1-0",25.1,Real Zaragoza Win,53.5,21.4,HIGH,1.69,12-30,1-0,1-0 (11.6%) | 1-1 (11.5%) | 2-0 (9.8%),49.5,50.5,Under,4.0
+17/04/2026,Argentina,Liga Profesional de Fútbol,Club Atlético Unión de Santa Fe,Newell's Old Boys,"Club Atlético Unión de Santa Fe Win, 1-0",25.2,Club Atlético Unión de Santa Fe Win,60.8,14.0,HIGH,1.67,0.67,1-0,1-0 (16.0%) | 2-0 (13.4%) | 1-1 (10.8%),42.4,57.6,Under,4.1
+17/04/2026,France,Ligue 2,Montpellier,Grenoble Foot 38,Grenoble Foot 38,25.3,Montpellier Win,57.4,17.3,HIGH,1.67,0.88,1-0,1-0 (13.0%) | 1-1 (11.5%) | 2-0 (10.9%),50.3,49.7,Over,4.2
+17/04/2026,Spain,LaLiga 2,Real Sociedad B,Racing de Santander,"Racing de Santander Win, Over 2.5",25.3,Racing de Santander Win,28.0,46.7,MODERATE,1.35,12-31,1-1,1-1 (10.4%) | 1-2 (9.4%) | 0-1 (7.7%),61.4,38.6,Over,3.9
+18/04/2026,England,League One,Wycombe Wanderers,Blackpool,"Wycombe Wanderers Win, 1-1",25.4,Wycombe Wanderers Win,51.1,23.6,HIGH,1.65,1.06,1-1,1-1 (11.6%) | 1-0 (10.9%) | 2-1 (9.6%),53.2,46.8,Over,3.9
+17/04/2026,Denmark,Danish Superliga,Brøndby IF,Sønderjyske Fodbold,"Brøndby IF Win, Over 2.5",25.5,Brøndby IF Win,49.1,25.4,MODERATE,1.86,1.23,1-1,1-1 (10.4%) | 2-1 (9.7%) | 1-0 (8.4%),59.6,40.4,Over,3.9
+18/04/2026,England,Championship,Sheffield Wednesday,Charlton Athletic,"Charlton Athletic Win, 0-1",25.6,Charlton Athletic Win,20.2,54.2,HIGH,0.96,12-31,0-1,0-1 (12.3%) | 1-1 (11.8%) | 0-2 (9.9%),45.6,54.4,Under,3.7
+18/04/2026,England,Premier League,Newcastle United,Bournemouth,"Newcastle United Win, Over 2.5",25.6,Newcastle United Win,47.2,27.2,MODERATE,1.7,12-31,1-1,1-1 (11.0%) | 2-1 (9.4%) | 1-0 (8.6%),64.0,36.0,Over,4.2
+18/04/2026,Germany,2. Bundesliga,1. FC Magdeburg,Fortuna Düsseldorf,"1. FC Magdeburg Win, Over 2.5",25.6,1. FC Magdeburg Win,45.7,28.6,MODERATE,1.74,1.34,1-1,1-1 (10.7%) | 2-1 (9.3%) | 1-0 (8.0%),62.5,37.5,Over,3.9
+18/04/2026,Germany,2. Bundesliga,SG Dynamo Dresden,VfL Bochum 1848,Over 2.5,25.6,SG Dynamo Dresden Win,40.1,34.3,MODERATE,1.66,12-31,1-1,1-1 (10.6%) | 2-1 (8.8%) | 1-2 (7.9%),59.3,40.7,Over,3.9
+17/04/2026,Germany,2. Bundesliga,Holstein Kiel,1. FC Kaiserslautern,Holstein Kiel Win,25.8,Holstein Kiel Win,44.1,30.1,MODERATE,1.63,1.34,1-1,1-1 (11.2%) | 2-1 (9.1%) | 1-0 (8.3%),57.4,42.6,Over,4.7
+18/04/2026,England,Premier League,Brentford,Fulham,Brentford Win,25.8,Brentford Win,45.6,28.6,MODERATE,1.68,12-31,1-1,1-1 (11.1%) | 2-1 (9.4%) | 1-0 (8.7%),54.5,45.5,Over,3.7
+18/04/2026,England,Premier League,Tottenham Hotspur,Brighton & Hove Albion,Brighton & Hove Albion Win,25.8,Brighton & Hove Albion Win,33.9,40.3,MODERATE,1.43,12-31,1-1,1-1 (10.6%) | 1-2 (9.0%) | 2-1 (7.6%),57.0,43.0,Over,3.9
+18/04/2026,Norway,Eliteserien,Sandefjord Fotball,Rosenborg BK,"Sandefjord Fotball Win, Over 2.5",25.8,Sandefjord Fotball Win,46.1,28.1,MODERATE,1.63,12-31,1-1,1-1 (11.0%) | 2-1 (8.9%) | 1-2 (7.8%),58.6,41.4,Over,3.9
+18/04/2026,USA,MLS,New York City FC,Charlotte FC,"New York City FC Win, 1-1",25.8,New York City FC Win,50.9,23.3,HIGH,1.68,1.07,1-1,1-1 (11.5%) | 1-0 (10.7%) | 2-1 (9.6%),53.8,46.2,Over,3.9
+18/04/2026,USA,MLS,Philadelphia Union,DC United,"Philadelphia Union Win, 1-1",25.8,Philadelphia Union Win,52.4,21.8,HIGH,1.7,12-31,1-1,1-1 (11.4%) | 1-0 (11.1%) | 2-1 (9.7%),50.0,50.0,Under,3.8
+18/04/2026,Belgium,Pro League,KVC Westerlo,KRC Genk,Over 2.5,25.9,KRC Genk Win,33.9,40.2,MODERATE,1.48,1.67,1-1,1-1 (10.6%) | 1-2 (8.8%) | 2-1 (7.9%),59.9,40.1,Over,3.9
+18/04/2026,USA,MLS,FC Cincinnati,Chicago Fire,Over 2.5,25.9,FC Cincinnati Win,37.6,36.5,LOW,1.5,12-31,1-1,1-1 (10.7%) | 1-2 (8.7%) | 2-1 (8.0%),60.2,39.8,Over,3.8
+18/04/2026,Australia,A-League Men,Brisbane Roar,Melbourne City,Melbourne City Win,26.0,Melbourne City Win,26.9,47.1,MODERATE,1.17,1.62,1-1,1-1 (11.6%) | 0-1 (9.9%) | 1-2 (9.4%),51.4,48.6,Over,3.9
+18/04/2026,England,League Two,Crewe Alexandra,Milton Keynes Dons,Milton Keynes Dons Win,26.0,Milton Keynes Dons Win,25.2,48.7,MODERATE,1.11,12-31,1-1,1-1 (11.7%) | 0-1 (10.5%) | 1-2 (9.5%),52.1,47.9,Over,4.0
+18/04/2026,England,National League,Brackley Town,Aldershot Town,Aldershot Town Win,26.0,Aldershot Town Win,32.1,41.9,MODERATE,1.43,12-31,1-1,1-1 (11.6%) | 1-2 (8.5%) | 2-1 (8.3%),56.4,43.6,Over,3.7
+18/04/2026,Germany,2. Bundesliga,Hannover 96,SC Paderborn 07,Over 2.5,26.0,Hannover 96 Win,42.7,31.4,MODERATE,1.59,12-31,1-1,1-1 (11.2%) | 2-1 (8.9%) | 1-0 (7.9%),59.8,40.2,Over,3.9
+18/04/2026,England,National League,Hartlepool United,Forest Green Rovers,Forest Green Rovers Win,26.2,Forest Green Rovers Win,28.2,45.5,MODERATE,1.34,12-31,1-1,1-1 (11.5%) | 1-2 (9.0%) | 0-1 (8.5%),56.0,44.0,Over,3.9
+18/04/2026,Germany,2. Bundesliga,Arminia Bielefeld,1. FC Nürnberg,Arminia Bielefeld Win,26.2,Arminia Bielefeld Win,47.9,25.9,MODERATE,1.71,12-31,1-1,1-1 (11.2%) | 2-1 (9.5%) | 1-0 (9.2%),56.1,43.9,Over,3.9
+18/04/2026,Spain,Copa del Rey,Atlético Madrid,Real Sociedad,"Atlético Madrid Win, 1-0",26.2,Atlético Madrid Win,52.3,21.5,HIGH,1.54,1,1-0,1-0 (12.1%) | 1-1 (12.1%) | 2-0 (9.4%),49.3,50.7,Under,4.0
+18/04/2026,Spain,LaLiga 2,CD Castellón,Burgos Club de Fútbol,"CD Castellón Win, 1-0",26.2,CD Castellón Win,54.5,19.2,HIGH,1.51,12-30,1-0,1-0 (13.5%) | 1-1 (12.2%) | 2-0 (10.2%),46.3,53.7,Under,4.0
+18/04/2026,USA,MLS,CF Montréal,New York Red Bulls,Over 2.5,26.2,New York Red Bulls Win,36.7,37.1,LOW,1.44,12-31,1-1,1-1 (10.8%) | 1-2 (8.9%) | 2-1 (7.8%),59.6,40.4,Over,3.9
+17/04/2026,China,CFA Super League,Zhejiang,Beijing Guoan,Over 2.5,26.3,Zhejiang Win,43.4,30.3,MODERATE,1.63,1.38,1-1,1-1 (11.1%) | 2-1 (9.0%) | 1-0 (8.0%),61.3,38.7,Over,3.9
+18/04/2026,England,League One,Mansfield Town,Luton Town,Luton Town Win,26.3,Luton Town Win,29.4,44.3,MODERATE,1.26,1.57,1-1,1-1 (11.7%) | 0-1 (9.3%) | 1-2 (9.2%),54.9,45.1,Over,3.9
+18/04/2026,England,League One,Bolton Wanderers,Huddersfield Town,Bolton Wanderers Win,26.4,Bolton Wanderers Win,46.2,27.3,MODERATE,1.62,1.21,1-1,1-1 (11.6%) | 1-0 (9.5%) | 2-1 (9.4%),55.9,44.1,Over,3.9
+18/04/2026,England,Premier League,Chelsea,Manchester United,Over 2.5,26.4,Chelsea Win,43.3,30.2,MODERATE,1.62,1.42,1-1,1-1 (11.0%) | 2-1 (8.9%) | 1-2 (7.8%),61.4,38.6,Over,4.0
+17/04/2026,Peru,Liga 1,Los Chankas CYC,Club Atlético Grau,"Los Chankas CYC Win, 1-0",26.5,Los Chankas CYC Win,56.3,17.1,HIGH,1.4,0.87,1-0,1-0 (14.5%) | 1-1 (12.6%) | 0-0 (10.4%),42.2,57.8,Under,4.0
+18/04/2026,Greece,Stoiximan Super League,Aris Thessaloniki,NPS Volos,"Aris Thessaloniki Win, 1-0",26.5,Aris Thessaloniki Win,56.6,16.8,HIGH,1.48,12-30,1-0,1-0 (14.3%) | 1-1 (12.2%) | 2-0 (10.6%),45.7,54.3,Under,3.9
+18/04/2026,Belgium,Pro League,RC Sporting Charleroi,Standard Liège,"RC Sporting Charleroi Win, 1-0",26.6,RC Sporting Charleroi Win,51.5,21.8,HIGH,1.52,0.95,1-0,1-0 (12.9%) | 1-1 (12.2%) | 2-0 (9.8%),48.7,51.3,Under,4.0
+18/04/2026,England,National League,Gateshead,Woking,Gateshead Win,26.6,Gateshead Win,41.7,31.8,MODERATE,1.52,12-31,1-1,1-1 (11.4%) | 2-1 (8.7%) | 1-0 (8.1%),57.0,43.0,Over,3.9
+18/04/2026,England,National League,Truro City,Carlisle United,"Carlisle United Win, 0-1",26.6,Carlisle United Win,23.1,50.3,HIGH,0.95,1.45,0-1,0-1 (13.2%) | 1-1 (12.5%) | 0-2 (9.5%),49.4,50.6,Under,3.8
+18/04/2026,Germany,Bundesliga,SV Werder Bremen,Hamburger SV,SV Werder Bremen Win,26.6,SV Werder Bremen Win,47.7,25.7,MODERATE,1.61,12-31,1-1,1-1 (11.7%) | 1-0 (9.9%) | 2-1 (9.4%),55.1,44.9,Over,3.9
+18/04/2026,Japan,J1 League,Cerezo Osaka,Kyoto Sanga FC,Cerezo Osaka Win,26.6,Cerezo Osaka Win,41.8,31.6,MODERATE,1.49,12-31,1-1,1-1 (12.0%) | 1-0 (9.4%) | 2-1 (8.9%),56.1,43.9,Over,3.9
+18/04/2026,Mexico,"Liga MX, Clausura",Club Necaxa,Tigres UANL,Tigres UANL Win,26.6,Tigres UANL Win,24.9,48.4,MODERATE,1.11,12-31,1-1,1-1 (11.7%) | 0-1 (10.5%) | 1-2 (9.5%),52.8,47.2,Over,3.8
+18/04/2026,Brazil,Brasileirão Série B,Náutico,São Bernardo,"Náutico Win, 1-0",26.8,Náutico Win,55.1,18.2,HIGH,1.4,12-30,1-0,1-0 (14.7%) | 1-1 (12.6%) | 0-0 (10.5%),44.1,55.9,Under,4.0
+18/04/2026,England,National League,Eastleigh,Tamworth,Eastleigh Win,26.9,Eastleigh Win,40.2,32.8,MODERATE,1.53,12-31,1-1,1-1 (11.2%) | 2-1 (8.6%) | 1-2 (8.2%),57.0,43.0,Over,3.6
+18/04/2026,Japan,J1 League,Kashima Antlers,Urawa Red Diamonds,Kashima Antlers Win,27.0,Kashima Antlers Win,47.7,25.3,MODERATE,1.53,12-31,1-1,1-1 (12.2%) | 1-0 (11.6%) | 2-1 (9.3%),48.9,51.1,Under,3.8
+18/04/2026,USA,MLS,Toronto FC,Austin FC,Toronto FC Win,27.0,Toronto FC Win,49.7,23.4,MODERATE,1.55,12-31,1-1,1-1 (12.1%) | 1-0 (12.0%) | 2-1 (9.4%),49.0,51.0,Under,3.9
+18/04/2026,Germany,Bundesliga,1. FC Union Berlin,VfL Wolfsburg,1. FC Union Berlin Win,27.1,1. FC Union Berlin Win,43.4,29.4,MODERATE,1.52,12-31,1-1,1-1 (12.0%) | 1-0 (9.9%) | 2-1 (9.1%),51.1,48.9,Over,4.0
+18/04/2026,Sweden,Allsvenskan,Halmstads BK,IFK Göteborg,IFK Göteborg Win,27.1,IFK Göteborg Win,24.9,48.0,MODERATE,1.0,12-31,1-1,1-1 (12.3%) | 0-1 (12.3%) | 1-2 (9.2%),48.9,51.1,Under,3.8
+18/04/2026,Argentina,Liga Profesional de Fútbol,CA Independiente,Defensa y Justicia,"CA Independiente Win, 1-0, Under 2.5",27.2,CA Independiente Win,55.3,17.5,HIGH,1.39,12-30,1-0,1-0 (14.0%) | 1-1 (12.7%) | 0-0 (10.1%),41.6,58.4,Under,3.9
+18/04/2026,Japan,J1 League,Yokohama F. Marinos,Kawasaki Frontale,Kawasaki Frontale Win,27.2,Kawasaki Frontale Win,33.6,39.2,MODERATE,1.48,12-31,1-1,1-1 (10.9%) | 1-2 (8.7%) | 2-1 (8.1%),56.9,43.1,Over,3.8
+18/04/2026,USA,MLS,Atlanta United,Nashville SC,Nashville SC Win,27.2,Nashville SC Win,28.1,44.7,MODERATE,1.2,12-31,1-1,1-1 (11.9%) | 0-1 (9.9%) | 1-2 (9.2%),51.4,48.6,Over,3.8
+18/04/2026,England,Championship,Hull City,Birmingham City,Hull City Win,27.3,Hull City Win,38.7,34.0,MODERATE,1.36,1.3,1-1,1-1 (12.4%) | 1-0 (9.5%) | 0-1 (9.1%),51.7,48.3,Over,3.9
+18/04/2026,England,Championship,Watford,Sheffield United,Sheffield United Win,27.3,Sheffield United Win,34.5,38.2,MODERATE,1.32,1.48,1-1,1-1 (11.9%) | 0-1 (9.0%) | 1-2 (8.8%),53.1,46.9,Over,4.1
+18/04/2026,England,League Two,Gillingham,Grimsby Town,Grimsby Town Win,27.3,Grimsby Town Win,23.6,49.0,MODERATE,0.9,12-31,0-1,0-1 (14.2%) | 1-1 (12.8%) | 0-0 (10.5%),46.2,53.8,Under,4.1
+18/04/2026,England,National League,Solihull Moors,Boston United,Solihull Moors Win,27.3,Solihull Moors Win,42.3,30.4,MODERATE,1.54,12-31,1-1,1-1 (11.7%) | 1-0 (9.1%) | 2-1 (9.0%),56.0,44.0,Over,3.9
+18/04/2026,England,Championship,Derby County,Oxford United,"Derby County Win, 1-0",27.4,Derby County Win,50.2,22.4,HIGH,1.49,0.93,1-0,1-0 (13.2%) | 1-1 (12.3%) | 2-0 (9.9%),46.1,53.9,Under,4.0
+17/04/2026,France,Ligue 2,Pau FC,Guingamp,Guingamp Win,27.5,Guingamp Win,31.3,41.2,MODERATE,1.25,1.49,1-1,1-1 (12.0%) | 0-1 (9.6%) | 1-2 (9.0%),53.2,46.8,Over,4.2
+18/04/2026,England,Championship,Bristol City,Norwich City,Norwich City Win,27.5,Norwich City Win,35.3,37.2,LOW,1.28,1.37,1-1,1-1 (12.4%) | 0-1 (9.7%) | 1-0 (9.1%),51.5,48.5,Over,3.8
+18/04/2026,England,League One,Barnsley,Bradford City,Bradford City Win,27.5,Bradford City Win,30.4,42.1,MODERATE,1.25,1.42,1-1,1-1 (12.3%) | 0-1 (9.9%) | 1-2 (8.7%),52.5,47.5,Over,3.9
+18/04/2026,England,National League,FC Halifax Town,Southend United,Southend United Win,27.5,Southend United Win,26.7,45.8,MODERATE,1.07,12-31,1-1,1-1 (12.4%) | 0-1 (11.6%) | 1-2 (9.1%),52.0,48.0,Over,3.9
+18/04/2026,Mexico,"Liga MX, Clausura",Atlético San Luis,Pumas UNAM,Pumas UNAM Win,27.5,Pumas UNAM Win,34.5,38.0,LOW,1.34,1.56,1-1,1-1 (11.5%) | 1-2 (9.0%) | 0-1 (8.6%),55.2,44.8,Over,3.9
+18/04/2026,Peru,Liga 1,Sport Huancayo,Deportivo Garcilaso,"Sport Huancayo Win, 1-0",27.5,Sport Huancayo Win,52.1,20.5,HIGH,1.49,12-30,1-0,1-0 (14.0%) | 1-1 (12.2%) | 2-0 (10.5%),45.9,54.1,Under,4.0
+18/04/2026,Portugal,Liga Portugal 2,União Leiria,Penafiel,"União Leiria Win, 1-0",27.5,União Leiria Win,52.1,20.4,HIGH,1.45,12-30,1-0,1-0 (13.7%) | 1-1 (12.5%) | 2-0 (9.9%),48.1,51.9,Under,4.0
+18/04/2026,USA,MLS,New England Revolution,Columbus Crew,Columbus Crew Win,27.5,Columbus Crew Win,31.8,40.7,MODERATE,1.29,12-31,1-1,1-1 (11.9%) | 0-1 (9.2%) | 1-2 (8.9%),53.1,46.9,Over,3.8
+18/04/2026,Brazil,Brasileirão Série B,Avaí,Ponte Preta,"Avaí Win, 1-0",27.7,Avaí Win,53.9,18.4,HIGH,1.38,12-30,1-0,1-0 (14.3%) | 1-1 (12.7%) | 0-0 (10.4%),43.7,56.3,Under,3.9
+18/04/2026,England,League Two,Crawley Town,Shrewsbury Town,Crawley Town Win,27.7,Crawley Town Win,49.2,23.1,MODERATE,1.51,12-30,1-0,1-0 (13.5%) | 1-1 (12.2%) | 2-0 (10.2%),46.2,53.8,Under,3.7
+18/04/2026,England,League Two,Fleetwood Town,Chesterfield,Chesterfield Win,27.7,Chesterfield Win,30.8,41.5,MODERATE,1.25,12-31,1-1,1-1 (12.3%) | 0-1 (9.8%) | 1-2 (8.8%),51.2,48.8,Over,4.0
+18/04/2026,Turkey,Trendyol Süper Lig,Fatih Karagümrük,Eyüpspor,Fatih Karagümrük Win,27.7,Fatih Karagümrük Win,48.7,23.7,MODERATE,1.49,12-31,1-0,1-0 (12.4%) | 1-1 (12.4%) | 2-0 (9.2%),46.3,53.7,Under,4.0
+18/04/2026,Belgium,Pro League,KV Mechelen,RSC Anderlecht,RSC Anderlecht Win,27.8,RSC Anderlecht Win,32.3,39.9,MODERATE,1.25,12-31,1-1,1-1 (12.2%) | 0-1 (9.8%) | 1-2 (8.8%),55.0,45.0,Over,3.9
+18/04/2026,Peru,Liga 1,ADC Juan Pablo II,Comerciantes Unidos,ADC Juan Pablo II Win,27.8,ADC Juan Pablo II Win,49.2,23.0,MODERATE,1.45,12-31,1-1,1-1 (12.5%) | 1-0 (12.4%) | 2-1 (9.1%),46.7,53.3,Under,4.0
+18/04/2026,Spain,LaLiga 2,Cultural Leonesa,Córdoba,Cultural Leonesa Win,27.8,Cultural Leonesa Win,37.0,35.3,LOW,1.4,12-31,1-1,1-1 (12.1%) | 1-0 (8.9%) | 0-1 (8.6%),50.1,49.9,Over,5.1
+17/04/2026,Sweden,Allsvenskan,Djurgårdens IF,Malmö FF,Djurgårdens IF Win,27.9,Djurgårdens IF Win,39.9,32.2,MODERATE,1.36,1.22,1-1,1-1 (12.6%) | 1-0 (10.4%) | 0-1 (9.3%),52.4,47.6,Over,3.9
+18/04/2026,France,Ligue 2,Stade de Reims,Red Star FC,Stade de Reims Win,27.9,Stade de Reims Win,49.1,22.9,MODERATE,1.45,12-30,1-0,1-0 (13.6%) | 1-1 (12.5%) | 2-0 (9.9%),46.0,54.0,Under,4.0
+18/04/2026,Italy,Serie B,Modena,Frosinone,Modena Win,27.9,Modena Win,37.6,34.4,LOW,1.37,12-31,1-1,1-1 (12.0%) | 0-1 (8.8%) | 1-0 (8.7%),55.3,44.7,Over,4.2
+17/04/2026,Portugal,Liga Portugal 2,Académico Viseu FC,Feirense,"Académico Viseu FC Win, 1-0, Under 2.5",28.1,Académico Viseu FC Win,52.3,19.6,HIGH,1.31,0.86,1-0,1-0 (15.0%) | 1-1 (12.9%) | 0-0 (11.4%),41.8,58.2,Under,4.0
+18/04/2026,France,Ligue 2,Bastia,Saint-Étienne,Saint-Étienne Win,28.1,Saint-Étienne Win,25.8,46.1,MODERATE,1.06,1.35,1-1,1-1 (12.9%) | 0-1 (12.2%) | 1-0 (9.5%),46.6,53.4,Under,4.3
+18/04/2026,Finland,Veikkausliiga,FC Lahti,Inter Turku,Inter Turku Win,28.2,Inter Turku Win,24.1,47.8,MODERATE,0.98,12-31,0-1,0-1 (13.1%) | 1-1 (12.7%) | 0-0 (9.4%),44.9,55.1,Under,3.8
+18/04/2026,England,League Two,Tranmere Rovers,Bristol Rovers,Bristol Rovers Win,28.3,Bristol Rovers Win,33.2,38.5,MODERATE,1.22,12-31,1-1,1-1 (12.4%) | 0-1 (10.2%) | 1-0 (8.9%),47.9,52.1,Under,3.9
+18/04/2026,Greece,Stoiximan Super League,Panetolikos,MGS Panserraikos,"Panetolikos Win, 1-0, Under 2.5",28.4,Panetolikos Win,52.8,18.8,HIGH,1.42,12-30,1-0,1-0 (16.0%) | 1-1 (12.2%) | 2-0 (11.4%),40.2,59.8,Under,4.2
+17/04/2026,England,Championship,Blackburn Rovers,Coventry City,Coventry City Win,28.5,Coventry City Win,23.5,48.0,MODERATE,0.91,12-31,0-1,0-1 (13.9%) | 1-1 (12.6%) | 0-0 (9.8%),46.1,53.9,Under,3.8
+18/04/2026,England,Championship,Portsmouth,Leicester City,Portsmouth Win,28.5,Portsmouth Win,41.8,29.8,MODERATE,1.31,1.07,1-1,1-1 (13.0%) | 1-0 (12.1%) | 0-1 (9.9%),45.4,54.6,Under,4.0
+18/04/2026,Portugal,Liga Portugal Betclic,CD Nacional,FC Alverca,CD Nacional Win,28.5,CD Nacional Win,41.8,29.7,MODERATE,1.42,1.14,1-1,1-1 (12.5%) | 1-0 (11.0%) | 2-1 (8.9%),50.7,49.3,Over,3.9
+18/04/2026,Brazil,Brasileirão Série A,Chapecoense,Botafogo,Botafogo Win,28.7,Botafogo Win,28.9,42.4,MODERATE,1.15,1.42,1-1,1-1 (12.5%) | 0-1 (10.9%) | 1-2 (8.9%),46.8,53.2,Under,3.9
+18/04/2026,England,Championship,Preston North End,West Bromwich Albion,West Bromwich Albion Win,28.7,West Bromwich Albion Win,25.7,45.6,MODERATE,0.96,12-31,0-1,0-1 (13.4%) | 1-1 (12.8%) | 0-0 (9.9%),45.1,54.9,Under,3.8
+18/04/2026,England,League Two,Barrow AFC,Walsall,Barrow AFC Win,28.7,Barrow AFC Win,39.2,32.0,MODERATE,1.26,12-31,1-1,1-1 (13.1%) | 1-0 (11.6%) | 0-1 (10.3%),43.8,56.2,Under,3.8
+18/04/2026,England,League Two,Notts County,Barnet,Notts County Win,28.7,Notts County Win,40.4,30.9,MODERATE,1.38,12-31,1-1,1-1 (12.6%) | 1-0 (10.6%) | 0-1 (9.1%),48.8,51.2,Under,3.7
+17/04/2026,Turkey,Trendyol Süper Lig,Antalyaspor,Konyaspor,Konyaspor Win,28.8,Konyaspor Win,31.7,39.5,MODERATE,1.2,1.39,1-1,1-1 (12.5%) | 0-1 (10.4%) | 1-0 (9.0%),48.8,51.2,Under,4.4
+18/04/2026,Belgium,Pro League,Royal Antwerp FC,Oud-Heverlee Leuven,Royal Antwerp FC Win,28.8,Royal Antwerp FC Win,41.1,30.1,MODERATE,1.38,12-31,1-1,1-1 (12.6%) | 1-0 (11.0%) | 0-1 (9.2%),49.0,51.0,Under,4.0
+18/04/2026,England,League Two,Harrogate Town,Colchester United,Colchester United Win,28.8,Colchester United Win,30.7,40.5,MODERATE,1.12,12-31,1-1,1-1 (12.6%) | 0-1 (11.2%) | 1-0 (9.0%),48.0,52.0,Under,3.9
+18/04/2026,Portugal,Liga Portugal Betclic,Gil Vicente,Vitória SC,Gil Vicente Win,28.8,Gil Vicente Win,44.5,26.7,MODERATE,1.43,12-31,1-1,1-1 (12.6%) | 1-0 (12.3%) | 2-1 (9.0%),44.9,55.1,Under,4.2
+18/04/2026,England,League Two,Oldham Athletic,Salford City,Oldham Athletic Win,28.9,Oldham Athletic Win,36.6,34.5,LOW,1.22,12-31,1-1,1-1 (12.9%) | 0-1 (10.6%) | 1-0 (10.2%),50.0,50.0,Under,4.0
+18/04/2026,Mexico,"Liga MX, Clausura",Mazatlán FC,Querétaro FC,Querétaro FC Win,29.0,Querétaro FC Win,33.8,37.2,LOW,1.22,12-31,1-1,1-1 (12.5%) | 0-1 (10.3%) | 1-0 (9.0%),51.2,48.8,Over,3.9
+18/04/2026,Italy,Serie A,Roma,Atalanta,Roma Win,29.1,Roma Win,39.0,31.9,MODERATE,1.32,12-31,1-1,1-1 (12.8%) | 1-0 (11.0%) | 0-1 (9.7%),47.3,52.7,Under,4.1
+18/04/2026,Italy,Serie B,Juve Stabia,Catanzaro,Juve Stabia Win,29.3,Juve Stabia Win,40.1,30.5,MODERATE,1.34,12-31,1-1,1-1 (12.8%) | 1-0 (11.8%) | 0-1 (9.5%),45.4,54.6,Under,4.3
+17/04/2026,France,Ligue 2,Nancy,Annecy FC,Nancy Win,29.5,Nancy Win,37.0,33.4,LOW,1.13,1.13,1-1,1-1 (13.3%) | 0-1 (11.8%) | 1-0 (11.8%),42.7,57.3,Under,3.9
+18/04/2026,England,League Two,Cheltenham Town,Newport County,Cheltenham Town Win,29.5,Cheltenham Town Win,39.6,30.8,MODERATE,1.33,12-31,1-1,1-1 (12.9%) | 1-0 (11.9%) | 0-1 (9.7%),46.0,54.0,Under,4.3
+18/04/2026,Italy,Serie B,Spezia,Südtirol,Spezia Win,29.6,Spezia Win,39.7,30.7,MODERATE,1.28,12-31,1-1,1-1 (13.1%) | 1-0 (12.3%) | 0-1 (10.2%),44.7,55.3,Under,4.8
+18/04/2026,Brazil,Brasileirão Série B,CRB,Juventude,CRB Win,29.7,CRB Win,45.8,24.5,MODERATE,1.29,1.01,1-1,1-1 (13.1%) | 1-0 (12.9%) | 0-1 (10.1%),44.3,55.7,Under,3.9
+18/04/2026,Chile,Chilean Primera División,Everton de Viña del Mar,Universidad de Chile,Under 2.5,29.7,Universidad de Chile Win,25.4,44.9,MODERATE,0.9,1.21,0-1,0-1 (14.6%) | 1-1 (13.2%) | 0-0 (12.1%),41.9,58.1,Under,4.1
+18/04/2026,Greece,Stoiximan Super League,AE Kifisia,Asteras Aktor,AE Kifisia Win,29.8,AE Kifisia Win,47.0,23.2,MODERATE,1.3,12-30,1-0,1-0 (14.5%) | 1-1 (13.0%) | 0-0 (11.2%),43.2,56.8,Under,4.0
+17/04/2026,Germany,Bundesliga,FC St. Pauli,1. FC Köln,1. FC Köln Win,29.9,1. FC Köln Win,31.6,38.6,MODERATE,1.12,1.33,1-1,1-1 (12.9%) | 0-1 (11.4%) | 1-0 (9.7%),47.0,53.0,Under,4.0
+18/04/2026,Brazil,Brasileirão Série A,Vasco da Gama,São Paulo,Vasco da Gama Win,30.1,Vasco da Gama Win,40.8,29.1,MODERATE,1.27,1.04,1-1,1-1 (13.1%) | 1-0 (12.6%) | 0-1 (10.3%),43.4,56.6,Under,4.0
+17/04/2026,Sweden,Allsvenskan,Degerfors IF,IF Elfsborg,Degerfors IF Win,30.3,Degerfors IF Win,35.9,33.9,LOW,1.15,1.15,1-1,1-1 (13.3%) | 1-0 (11.6%) | 0-1 (11.5%),42.3,57.7,Under,4.1
+18/04/2026,Brazil,Brasileirão Série B,América Mineiro,Sport Recife,América Mineiro Win,30.3,América Mineiro Win,38.8,30.9,MODERATE,1.16,12-31,1-1,1-1 (13.3%) | 1-0 (12.2%) | 0-1 (11.5%),42.6,57.4,Under,4.1
+17/04/2026,Italy,Serie B,Sampdoria,Monza,Under 2.5,30.4,Monza Win,26.3,43.2,MODERATE,0.97,1.28,0-1,0-1 (13.6%) | 1-1 (13.1%) | 0-0 (10.6%),41.7,58.3,Under,4.5
+18/04/2026,Greece,Stoiximan Super League,OFI Crete,APO Levadiakos,APO Levadiakos Win,30.4,APO Levadiakos Win,31.8,37.7,LOW,1.1,12-31,1-1,1-1 (12.9%) | 0-1 (11.7%) | 1-0 (9.9%),47.4,52.6,Under,4.2
+18/04/2026,Italy,Serie B,Mantova,Avellino,Mantova Win,30.4,Mantova Win,42.2,27.4,MODERATE,1.31,12-31,1-1,1-1 (13.0%) | 1-0 (12.7%) | 0-1 (9.9%),46.1,53.9,Under,5.4
+18/04/2026,England,League One,Stevenage,Lincoln City,Under 2.5,30.7,Lincoln City Win,31.9,37.4,LOW,1.07,12-31,1-1,1-1 (13.5%) | 0-1 (12.6%) | 1-0 (12.5%),38.5,61.5,Under,4.2
+18/04/2026,Japan,J1 League,Tokyo Verdy,JEF United Chiba,Under 2.5,30.7,Tokyo Verdy Win,40.5,28.9,MODERATE,1.21,12-30,1-0,1-0 (13.4%) | 1-1 (13.3%) | 0-0 (11.1%),39.0,61.0,Under,4.2
+18/04/2026,Greece,Stoiximan Super League,Atromitos Athens,AE Larisa,"Atromitos Athens Win, Under 2.5",30.9,Atromitos Athens Win,46.0,23.2,MODERATE,1.26,0.9,1-0,1-0 (14.6%) | 1-1 (13.1%) | 0-0 (11.6%),38.9,61.1,Under,4.3
+18/04/2026,Brazil,Brasileirão Série B,Vila Nova FC,Operário-PR,Under 2.5,31.0,Vila Nova FC Win,40.3,28.7,MODERATE,1.2,0.98,1-0,1-0 (13.5%) | 1-1 (13.3%) | 0-0 (11.3%),37.5,62.5,Under,4.4
+18/04/2026,Portugal,Liga Portugal 2,Paços de Ferreira,Chaves,Under 2.5,31.0,Chaves Win,29.9,39.1,MODERATE,1.03,12-31,1-1,1-1 (13.3%) | 0-1 (13.0%) | 1-0 (11.2%),41.7,58.3,Under,4.2
+18/04/2026,Portugal,Liga Portugal 2,Torreense,Marítimo,Marítimo Win,31.4,Marítimo Win,32.3,36.3,LOW,1.01,12-31,1-1,1-1 (13.2%) | 0-1 (13.1%) | 1-0 (10.8%),46.3,53.7,Under,4.0
+18/04/2026,Portugal,Liga Portugal Betclic,Casa Pia,Santa Clara,Under 2.5,31.4,Santa Clara Win,24.9,43.7,MODERATE,0.95,1.11,0-1,0-1 (14.1%) | 1-1 (13.4%) | 0-0 (12.6%),37.8,62.2,Under,4.2
+18/04/2026,France,Ligue 1,Angers,Le Havre,Under 2.5,31.6,Le Havre Win,32.9,35.5,LOW,1.08,12-31,1-1,1-1 (13.4%) | 0-1 (12.4%) | 1-0 (11.7%),40.0,60.0,Under,3.8
+18/04/2026,Italy,Serie A,Udinese,Parma,Under 2.5,31.8,Udinese Win,44.2,24.0,MODERATE,1.27,12-30,1-0,1-0 (15.4%) | 1-1 (12.9%) | 0-0 (12.1%),40.7,59.3,Under,4.1
+18/04/2026,Brazil,Brasileirão Série A,Vitória,Corinthians,Under 2.5,32.0,Corinthians Win,34.0,34.0,LOW,1.1,1.15,1-1,1-1 (13.3%) | 0-1 (12.1%) | 1-0 (11.6%),37.7,62.3,Under,4.1
+18/04/2026,Turkey,Trendyol Süper Lig,Kocaelispor,Göztepe,Under 2.5,32.0,Göztepe Win,33.8,34.2,LOW,1.13,12-31,1-1,1-1 (13.4%) | 1-0 (12.5%) | 0-1 (11.9%),37.8,62.2,Under,4.4
+18/04/2026,Argentina,Liga Profesional de Fútbol,Instituto De Córdoba,Estudiantes de La Plata,Under 2.5,32.1,Instituto De Córdoba Win,34.3,33.7,LOW,1.1,12-31,1-1,1-1 (13.4%) | 1-0 (12.3%) | 0-1 (12.2%),35.9,64.1,Under,4.4
