@@ -1,0 +1,21 @@
+[
+  {
+    "Date":"11\/12\/2016",
+    "country":"brazil",
+    "league":"serie_a",
+    "HomeTeam":"Chapecoense-SC",
+    "AwayTeam":"Atletico-MG",
+    "generated_at_utc":"2026-04-17T11:02:25+00:00",
+    "p_over_2_5":0.4434007861,
+    "p_under_2_5":0.5565992139,
+    "predicted_winner":"A",
+    "p_home_win":0.3421249074,
+    "p_draw":0.284989364,
+    "p_away_win":0.3728857287,
+    "pred_total_bookings":4.0211353308,
+    "expected_home_goals":1.2213270942,
+    "expected_away_goals":1.2887026282,
+    "pred_correct_score":"1-1",
+    "pred_correct_score_top3":"[[\"1-1\", 0.1279065096866643], [\"0-1\", 0.10472748070065716], [\"1-0\", 0.09925215242564596]]"
+  }
+]

@@ -1,0 +1,2 @@
+Date,country,league,HomeTeam,AwayTeam,generated_at_utc,p_over_2_5,p_under_2_5,predicted_winner,p_home_win,p_draw,p_away_win,pred_total_bookings,expected_home_goals,expected_away_goals,pred_correct_score,pred_correct_score_top3
+11/12/2016,brazil,serie_a,Chapecoense-SC,Atletico-MG,2026-04-17T11:02:25+00:00,0.44340078613228345,0.5565992138677165,A,0.342124907361462,0.2849893639521264,0.3728857286864115,4.021135330818257,1.221327094196602,1.2887026282123661,1-1,"[[""1-1"", 0.1279065096866643], [""0-1"", 0.10472748070065716], [""1-0"", 0.09925215242564596]]"

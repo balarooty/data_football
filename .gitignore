@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# Data (too large for git - regenerate with scrape_football_data.py)
+
+# Model artifacts (regenerate with prediction_system.py)
+artifacts/*.joblib
+
+# OS
+.DS_Store
+Thumbs.db

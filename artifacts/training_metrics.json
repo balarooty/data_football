@@ -1,0 +1,13 @@
+{
+  "train_rows": 79203,
+  "test_rows": 19801,
+  "bookings_test_rows": 12959,
+  "winner_accuracy": 0.4992677137518307,
+  "winner_log_loss": 1.0075747070739893,
+  "over_under_accuracy": 0.5662845310842887,
+  "over_under_roc_auc": 0.5942223204714903,
+  "bookings_mae": 1.6904456148558615,
+  "bookings_rmse": 2.1156195299733045,
+  "correct_score_exact_accuracy": 0.1318115246704712,
+  "correct_score_top3_accuracy": 0.34331599414171
+}
