@@ -14,3 +14,9 @@ artifacts/*.joblib
 # OS
 .DS_Store
 Thumbs.db
+
+# Agent Zero project files (secrets, tokens)
+.a0proj/
+
+# OAuth credentials
+update_sheet.py
