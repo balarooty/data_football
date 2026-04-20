@@ -20,3 +20,5 @@ Thumbs.db
 
 # OAuth credentials
 update_sheet.py
+data_scraper/
+update_sheet.py

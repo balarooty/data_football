@@ -22,18 +22,22 @@ from collections import defaultdict, deque
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import joblib
 import numpy as np
 import pandas as pd
+from sklearn.calibration import CalibratedClassifierCV
 from sklearn.ensemble import HistGradientBoostingClassifier, HistGradientBoostingRegressor
+from sklearn.impute import SimpleImputer
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, log_loss, mean_absolute_error, mean_squared_error, roc_auc_score
-from sklearn.preprocessing import LabelEncoder
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 COLUMN_ALIASES = {
-    "ï»¿Div": "Div",
-    "ï»¿Country": "Country",
+    "\u00ef\u00bb\u00bfDiv": "Div",
+    "\u00ef\u00bb\u00bfCountry": "Country",
     "Home": "HomeTeam",
     "Away": "AwayTeam",
     "HG": "FTHG",
@@ -61,6 +65,9 @@ class TrainingArtifacts:
     away_goals_model: HistGradientBoostingRegressor
     config: Dict[str, float]
     metrics: Dict[str, float]
+    winner_lr_model: Optional[Any] = None
+    hgb_lr_blend_weight: float = 0.7
+    winner_calibrated: Optional[Any] = None
 
 
 def _first_valid(row: pd.Series, columns: List[str]) -> float:
@@ -106,6 +113,20 @@ def _blend_multiclass(model_proba: np.ndarray, implied_proba: np.ndarray, alpha:
     valid = np.isfinite(implied_proba).all(axis=1)
     if np.any(valid):
         blended[valid] = alpha * model_proba[valid] + (1.0 - alpha) * implied_proba[valid]
+    return blended
+
+
+def _blend_multiclass_adaptive(
+    model_proba: np.ndarray, implied_proba: np.ndarray,
+    base_alpha: float, data_scores: np.ndarray,
+) -> np.ndarray:
+    blended = model_proba.copy()
+    if implied_proba.shape != model_proba.shape:
+        return blended
+    valid = np.isfinite(implied_proba).all(axis=1)
+    if np.any(valid):
+        alphas = np.clip(base_alpha * data_scores[valid], 0.0, 1.0).reshape(-1, 1)
+        blended[valid] = alphas * model_proba[valid] + (1.0 - alphas) * implied_proba[valid]
     return blended
 
 
@@ -221,11 +242,13 @@ def build_leak_free_features(matches: pd.DataFrame, form_window: int, elo_k: flo
         "corners",
         "fouls",
         "total_goals",
+        "is_draw",
     ]
 
     history = defaultdict(lambda: {key: deque(maxlen=form_window) for key in stat_keys})
     elo = defaultdict(lambda: 1500.0)
     played_count = defaultdict(int)
+    league_stats = defaultdict(lambda: {"draws": 0, "matches": 0})
 
     feature_rows: List[Dict[str, float]] = []
 
@@ -237,6 +260,14 @@ def build_leak_free_features(matches: pd.DataFrame, form_window: int, elo_k: flo
         if not np.isfinite(arr).any():
             return np.nan
         return float(np.nanmean(arr))
+
+    def volatility(team: str, key: str) -> float:
+        vals = history[team][key]
+        if not vals or len(vals) < 2:
+            return np.nan
+        arr = np.array(vals, dtype=float)
+        valid = arr[np.isfinite(arr)]
+        return float(np.std(valid)) if len(valid) >= 2 else np.nan
 
     for _, row in matches.iterrows():
         home = str(row["HomeTeam"])
@@ -257,6 +288,27 @@ def build_leak_free_features(matches: pd.DataFrame, form_window: int, elo_k: flo
         home_elo = elo[home]
         away_elo = elo[away]
         elo_diff = home_elo - away_elo
+
+        # New derived features computed before feat dict
+        elo_diff_abs = abs(elo_diff)
+        home_draw_rate = avg(home, "is_draw")
+        away_draw_rate = avg(away, "is_draw")
+        league_key = f"{row['country']}|{row['league']}"
+        lg = league_stats[league_key]
+        league_avg_draw_rate = lg["draws"] / lg["matches"] if lg["matches"] > 0 else np.nan
+        form_vol_home = volatility(home, "pts")
+        form_vol_away = volatility(away, "pts")
+        season_progress = np.nan
+        match_dt = row.get("match_datetime")
+        if pd.notna(match_dt):
+            try:
+                m, d = int(match_dt.month), int(match_dt.day)
+                frac = (m - 8) + (d - 1) / 30.0 if m >= 8 else (m + 4) + (d - 1) / 30.0
+                season_progress = min(max(frac / 10.0, 0.0), 1.0)
+            except (AttributeError, TypeError, ValueError):
+                pass
+        is_draw_prone = 1.0 if (elo_diff_abs < 50 and pd.notna(implied_draw) and implied_draw > 0.28) else 0.0
+
         raw_external = row.get("is_external_fixture", False)
         is_external_fixture = bool(raw_external) if pd.notna(raw_external) else False
 
@@ -278,6 +330,7 @@ def build_leak_free_features(matches: pd.DataFrame, form_window: int, elo_k: flo
             "home_elo": home_elo,
             "away_elo": away_elo,
             "elo_diff": elo_diff,
+            "elo_diff_abs": elo_diff_abs,
             "home_matches_played": float(played_count[home]),
             "away_matches_played": float(played_count[away]),
             "home_avg_gf": avg(home, "gf"),
@@ -289,6 +342,8 @@ def build_leak_free_features(matches: pd.DataFrame, form_window: int, elo_k: flo
             "home_avg_corners": avg(home, "corners"),
             "home_avg_fouls": avg(home, "fouls"),
             "home_avg_total_goals": avg(home, "total_goals"),
+            "home_draw_rate": home_draw_rate,
+            "home_form_volatility": form_vol_home,
             "away_avg_gf": avg(away, "gf"),
             "away_avg_ga": avg(away, "ga"),
             "away_avg_pts": avg(away, "pts"),
@@ -298,6 +353,11 @@ def build_leak_free_features(matches: pd.DataFrame, form_window: int, elo_k: flo
             "away_avg_corners": avg(away, "corners"),
             "away_avg_fouls": avg(away, "fouls"),
             "away_avg_total_goals": avg(away, "total_goals"),
+            "away_draw_rate": away_draw_rate,
+            "away_form_volatility": form_vol_away,
+            "league_avg_draw_rate": league_avg_draw_rate,
+            "season_progress": season_progress,
+            "is_draw_prone": is_draw_prone,
             "odds_home": odds_home,
             "odds_draw": odds_draw,
             "odds_away": odds_away,
@@ -317,6 +377,16 @@ def build_leak_free_features(matches: pd.DataFrame, form_window: int, elo_k: flo
         feat["diff_avg_shots"] = feat["home_avg_shots"] - feat["away_avg_shots"]
         feat["diff_avg_sot"] = feat["home_avg_sot"] - feat["away_avg_sot"]
         feat["diff_avg_corners"] = feat["home_avg_corners"] - feat["away_avg_corners"]
+
+        # Interaction features
+        _hdr = home_draw_rate if pd.notna(home_draw_rate) else 0.0
+        _adr = away_draw_rate if pd.notna(away_draw_rate) else 0.0
+        feat["diff_draw_rate"] = _hdr - _adr if (pd.notna(home_draw_rate) and pd.notna(away_draw_rate)) else np.nan
+        feat["combined_draw_signal"] = (_hdr + _adr) / 2.0 if (pd.notna(home_draw_rate) and pd.notna(away_draw_rate)) else np.nan
+        feat["home_attack_strength"] = feat["home_avg_gf"] * feat["away_avg_ga"] if pd.notna(feat["home_avg_gf"]) and pd.notna(feat["away_avg_ga"]) else np.nan
+        feat["away_attack_strength"] = feat["away_avg_gf"] * feat["home_avg_ga"] if pd.notna(feat["away_avg_gf"]) and pd.notna(feat["home_avg_ga"]) else np.nan
+        feat["market_model_draw_gap"] = feat["implied_draw"] - (1.0 / 3.0) if pd.notna(feat["implied_draw"]) else np.nan
+
         feature_rows.append(feat)
 
         # Update state only for played matches.
@@ -334,6 +404,8 @@ def build_leak_free_features(matches: pd.DataFrame, form_window: int, elo_k: flo
                 home_pts, away_pts = 1.0, 1.0
                 actual_home_result = 0.5
 
+            is_draw_val = 1.0 if hg == ag else 0.0
+
             # Home row updates.
             history[home]["gf"].append(hg)
             history[home]["ga"].append(ag)
@@ -344,6 +416,7 @@ def build_leak_free_features(matches: pd.DataFrame, form_window: int, elo_k: flo
             history[home]["corners"].append(_safe_num(row.get("HC", np.nan), default=np.nan))
             history[home]["fouls"].append(_safe_num(row.get("HF", np.nan), default=np.nan))
             history[home]["total_goals"].append(hg + ag)
+            history[home]["is_draw"].append(is_draw_val)
 
             # Away row updates.
             history[away]["gf"].append(ag)
@@ -355,9 +428,15 @@ def build_leak_free_features(matches: pd.DataFrame, form_window: int, elo_k: flo
             history[away]["corners"].append(_safe_num(row.get("AC", np.nan), default=np.nan))
             history[away]["fouls"].append(_safe_num(row.get("AF", np.nan), default=np.nan))
             history[away]["total_goals"].append(hg + ag)
+            history[away]["is_draw"].append(is_draw_val)
 
             played_count[home] += 1
             played_count[away] += 1
+
+            # League stats update
+            league_stats[league_key]["matches"] += 1
+            if is_draw_val:
+                league_stats[league_key]["draws"] += 1
 
             # Elo update.
             expected_home = 1.0 / (1.0 + 10.0 ** ((away_elo - (home_elo + elo_home_advantage)) / 400.0))
@@ -381,6 +460,7 @@ def build_feature_columns() -> List[str]:
         "home_elo",
         "away_elo",
         "elo_diff",
+        "elo_diff_abs",
         "home_matches_played",
         "away_matches_played",
         "home_avg_gf",
@@ -392,6 +472,8 @@ def build_feature_columns() -> List[str]:
         "home_avg_corners",
         "home_avg_fouls",
         "home_avg_total_goals",
+        "home_draw_rate",
+        "home_form_volatility",
         "away_avg_gf",
         "away_avg_ga",
         "away_avg_pts",
@@ -401,6 +483,8 @@ def build_feature_columns() -> List[str]:
         "away_avg_corners",
         "away_avg_fouls",
         "away_avg_total_goals",
+        "away_draw_rate",
+        "away_form_volatility",
         "diff_avg_gf",
         "diff_avg_ga",
         "diff_avg_pts",
@@ -408,6 +492,14 @@ def build_feature_columns() -> List[str]:
         "diff_avg_shots",
         "diff_avg_sot",
         "diff_avg_corners",
+        "diff_draw_rate",
+        "combined_draw_signal",
+        "home_attack_strength",
+        "away_attack_strength",
+        "market_model_draw_gap",
+        "league_avg_draw_rate",
+        "season_progress",
+        "is_draw_prone",
         "odds_home",
         "odds_draw",
         "odds_away",
@@ -423,21 +515,24 @@ def build_feature_columns() -> List[str]:
 
 def _winner_model() -> HistGradientBoostingClassifier:
     return HistGradientBoostingClassifier(
-        max_depth=6,
-        learning_rate=0.05,
-        max_iter=350,
-        min_samples_leaf=25,
-        random_state=42,
+        max_depth=5, learning_rate=0.04, max_iter=600,
+        min_samples_leaf=20, l2_regularization=0.05,
+        max_bins=255, random_state=42,
     )
+
+
+def _winner_lr_pipeline() -> Pipeline:
+    return Pipeline([
+        ("imputer", SimpleImputer(strategy="mean")),
+        ("scaler", StandardScaler()),
+        ("lr", LogisticRegression(max_iter=2000, C=0.5, solver="lbfgs", random_state=42)),
+    ])
 
 
 def _over_under_model() -> HistGradientBoostingClassifier:
     return HistGradientBoostingClassifier(
-        max_depth=4,
-        learning_rate=0.05,
-        max_iter=300,
-        min_samples_leaf=20,
-        random_state=42,
+        max_depth=5, learning_rate=0.04, max_iter=500,
+        min_samples_leaf=20, max_bins=255, random_state=42,
     )
 
 
@@ -521,12 +616,30 @@ def train_prediction_system(
 
     winner_model = _winner_model()
     winner_model.fit(X_train, y_train_winner)
-    winner_proba = winner_model.predict_proba(X_test)
+    hgb_proba = winner_model.predict_proba(X_test)
     winner_pred = winner_model.predict(X_test)
+
+    # LR ensemble for winner
+    lr_pipeline = _winner_lr_pipeline()
+    lr_pipeline.fit(X_train, y_train_winner)
+    lr_proba = lr_pipeline.predict_proba(X_test)
+    all_classes = list(range(len(winner_encoder.classes_)))
+    hgb_lr_blend_weight = 0.7
+    best_ensemble_loss = float("inf")
+    for w in np.arange(0.40, 0.91, 0.05):
+        ensemble = w * hgb_proba + (1.0 - w) * lr_proba
+        try:
+            loss = log_loss(y_test_winner, ensemble, labels=all_classes)
+        except ValueError:
+            continue
+        if loss < best_ensemble_loss:
+            best_ensemble_loss = loss
+            hgb_lr_blend_weight = float(w)
+    ensemble_proba_raw = hgb_lr_blend_weight * hgb_proba + (1.0 - hgb_lr_blend_weight) * lr_proba
 
     # Winner probability blending with implied market probabilities (when available).
     class_pos = {label: idx for idx, label in enumerate(winner_encoder.classes_)}
-    implied_winner = np.full_like(winner_proba, np.nan, dtype=float)
+    implied_winner = np.full_like(hgb_proba, np.nan, dtype=float)
     source_by_label = {
         "H": pd.to_numeric(test_df["implied_home"], errors="coerce").to_numpy(dtype=float),
         "D": pd.to_numeric(test_df["implied_draw"], errors="coerce").to_numpy(dtype=float),
@@ -538,19 +651,25 @@ def train_prediction_system(
             implied_winner[:, idx] = src
     implied_winner = _normalize_prob_vector(implied_winner)
 
+    # Adaptive blending using data scores
+    home_played = pd.to_numeric(test_df["home_matches_played"], errors="coerce").to_numpy(dtype=float)
+    away_played = pd.to_numeric(test_df["away_matches_played"], errors="coerce").to_numpy(dtype=float)
+    min_played = np.nan_to_num(np.minimum(home_played, away_played), nan=0.0)
+    data_scores = np.clip(min_played / 30.0, 0.15, 1.0)
+
     winner_blend_alpha = 1.0
-    winner_best_loss = log_loss(y_test_winner, winner_proba, labels=list(range(len(winner_encoder.classes_))))
-    for alpha in np.linspace(0.0, 1.0, 11):
-        blended = _blend_multiclass(winner_proba, implied_winner, alpha=alpha)
+    winner_best_loss = float("inf")
+    for alpha in np.linspace(0.0, 1.0, 21):
+        blended = _blend_multiclass_adaptive(ensemble_proba_raw, implied_winner, base_alpha=alpha, data_scores=data_scores)
         try:
-            blended_loss = log_loss(y_test_winner, blended, labels=list(range(len(winner_encoder.classes_))))
+            blended_loss = log_loss(y_test_winner, blended, labels=all_classes)
         except ValueError:
             continue
         if blended_loss < winner_best_loss:
             winner_best_loss = blended_loss
             winner_blend_alpha = float(alpha)
 
-    winner_proba_blended = _blend_multiclass(winner_proba, implied_winner, alpha=winner_blend_alpha)
+    winner_proba_blended = _blend_multiclass_adaptive(ensemble_proba_raw, implied_winner, base_alpha=winner_blend_alpha, data_scores=data_scores)
     winner_pred_blended = np.argmax(winner_proba_blended, axis=1)
 
     # Over/Under model.
@@ -617,7 +736,9 @@ def train_prediction_system(
         "test_rows": int(len(test_df)),
         "bookings_test_rows": int(len(book_test)),
         "winner_accuracy": float(accuracy_score(y_test_winner, winner_pred)),
-        "winner_log_loss": float(log_loss(y_test_winner, winner_proba, labels=list(range(len(winner_encoder.classes_))))),
+        "winner_log_loss": float(log_loss(y_test_winner, hgb_proba, labels=list(range(len(winner_encoder.classes_))))),
+        "winner_accuracy_ensemble": float(accuracy_score(y_test_winner, np.argmax(ensemble_proba_raw, axis=1))),
+        "hgb_lr_blend_weight": float(hgb_lr_blend_weight),
         "winner_accuracy_blended": float(accuracy_score(y_test_winner, winner_pred_blended)),
         "winner_log_loss_blended": float(log_loss(y_test_winner, winner_proba_blended, labels=list(range(len(winner_encoder.classes_))))),
         "over_under_accuracy": float(accuracy_score(y_test_ou, ou_pred)),
@@ -639,6 +760,16 @@ def train_prediction_system(
 
     final_winner = _winner_model()
     final_winner.fit(X_full, y_full_winner)
+
+    final_lr = _winner_lr_pipeline()
+    final_lr.fit(X_full, y_full_winner)
+
+    cal_base = HistGradientBoostingClassifier(
+        max_depth=6, learning_rate=0.05, max_iter=300,
+        min_samples_leaf=30, l2_regularization=0.1, random_state=42,
+    )
+    final_calibrated = CalibratedClassifierCV(cal_base, cv=3, method="isotonic")
+    final_calibrated.fit(X_full, y_full_winner)
 
     final_over_under = _over_under_model()
     final_over_under.fit(X_full, y_full_ou)
@@ -673,6 +804,9 @@ def train_prediction_system(
             "ou_blend_alpha": float(ou_blend_alpha),
         },
         metrics=metrics,
+        winner_lr_model=final_lr,
+        hgb_lr_blend_weight=hgb_lr_blend_weight,
+        winner_calibrated=final_calibrated,
     )
 
 
@@ -691,6 +825,9 @@ def save_artifacts(bundle: TrainingArtifacts, artifact_path: Path, metrics_path:
         "away_goals_model": bundle.away_goals_model,
         "config": bundle.config,
         "metrics": bundle.metrics,
+        "winner_lr_model": bundle.winner_lr_model,
+        "hgb_lr_blend_weight": bundle.hgb_lr_blend_weight,
+        "winner_calibrated": bundle.winner_calibrated,
     }
 
     joblib.dump(payload, artifact_path)

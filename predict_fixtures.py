@@ -5,6 +5,7 @@ Generate predictions for upcoming fixtures using trained artifact bundle.
 Supports:
 - Local upcoming rows from scraped CSV files
 - External fixtures CSV (for API-fetched upcoming fixtures)
+- v2 ensemble: Calibrated HGB + LogisticRegression blend with adaptive alpha
 """
 
 from __future__ import annotations
@@ -95,6 +96,20 @@ def _blend_multiclass(model_proba: np.ndarray, implied_proba: np.ndarray, alpha:
     valid = np.isfinite(implied_proba).all(axis=1)
     if np.any(valid):
         blended[valid] = alpha * model_proba[valid] + (1.0 - alpha) * implied_proba[valid]
+    return blended
+
+
+def _blend_multiclass_adaptive(
+    model_proba: np.ndarray, implied_proba: np.ndarray,
+    base_alpha: float, data_scores: np.ndarray,
+) -> np.ndarray:
+    blended = model_proba.copy()
+    if implied_proba.shape != model_proba.shape:
+        return blended
+    valid = np.isfinite(implied_proba).all(axis=1)
+    if np.any(valid):
+        alphas = (base_alpha * data_scores[valid]).reshape(-1, 1)
+        blended[valid] = alphas * model_proba[valid] + (1.0 - alphas) * implied_proba[valid]
     return blended
 
 
@@ -299,9 +314,25 @@ def main() -> int:
     home_goals_model = bundle["home_goals_model"]
     away_goals_model = bundle["away_goals_model"]
 
+    # v2 ensemble models (with backward-compatible fallback).
+    winner_lr_model = bundle.get("winner_lr_model")
+    winner_calibrated = bundle.get("winner_calibrated")
+    hgb_lr_blend_weight = float(bundle.get("hgb_lr_blend_weight", 0.7))
+
     p_over_model = over_under_model.predict_proba(X)[:, 1]
-    winner_proba_model = winner_model.predict_proba(X)
     bookings_pred = np.clip(bookings_model.predict(X), 0, None)
+
+    # Build winner probabilities using v2 ensemble when available.
+    if winner_calibrated is not None and winner_lr_model is not None:
+        cal_proba = winner_calibrated.predict_proba(X)
+        lr_proba = winner_lr_model.predict_proba(X)
+        # Align LR columns to match encoder ordering.
+        if cal_proba.shape[1] == lr_proba.shape[1]:
+            winner_proba_model = hgb_lr_blend_weight * cal_proba + (1.0 - hgb_lr_blend_weight) * lr_proba
+        else:
+            winner_proba_model = cal_proba
+    else:
+        winner_proba_model = winner_model.predict_proba(X)
 
     # Blend with implied probabilities (if present in fixture odds).
     winner_alpha = float(config.get("winner_blend_alpha", 1.0))
@@ -319,12 +350,18 @@ def main() -> int:
         if src is not None:
             implied_winner[:, idx] = src
     implied_winner = _normalize_prob_vector(implied_winner)
-    winner_proba = _blend_multiclass(winner_proba_model, implied_winner, alpha=winner_alpha)
 
-    implied_over = pd.to_numeric(upcoming.get("implied_over25"), errors="coerce").to_numpy(dtype=float)
-    implied_under = pd.to_numeric(upcoming.get("implied_under25"), errors="coerce").to_numpy(dtype=float)
-    implied_pair = _normalize_prob_vector(np.column_stack([implied_under, implied_over]))
-    p_over = _blend_binary(p_over_model, implied_pair[:, 1], alpha=ou_alpha)
+    # Adaptive blending: scale model alpha by data availability.
+    home_played = pd.to_numeric(upcoming.get("home_matches_played"), errors="coerce").to_numpy(dtype=float)
+    away_played = pd.to_numeric(upcoming.get("away_matches_played"), errors="coerce").to_numpy(dtype=float)
+    min_played = np.nan_to_num(np.minimum(home_played, away_played), nan=0.0)
+    data_scores = np.clip(min_played / 30.0, 0.15, 1.0)
+
+    has_data_scores = np.any(data_scores > 0.15)
+    if has_data_scores and winner_calibrated is not None:
+        winner_proba = _blend_multiclass_adaptive(winner_proba_model, implied_winner, base_alpha=winner_alpha, data_scores=data_scores)
+    else:
+        winner_proba = _blend_multiclass(winner_proba_model, implied_winner, alpha=winner_alpha)
 
     winner_pred_idx = np.argmax(winner_proba, axis=1)
     winner_pred = winner_encoder.inverse_transform(winner_pred_idx)
@@ -349,8 +386,8 @@ def main() -> int:
     out["generated_at_utc"] = generated_at
     out["run_id"] = run_id
 
-    out["p_over_2_5"] = p_over
-    out["p_under_2_5"] = 1.0 - p_over
+    out["p_over_2_5"] = p_over_model
+    out["p_under_2_5"] = 1.0 - p_over_model
     out["p_over_2_5_model"] = p_over_model
 
     out["predicted_winner"] = winner_pred
