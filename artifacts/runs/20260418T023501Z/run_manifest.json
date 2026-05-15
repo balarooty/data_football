@@ -1,0 +1,14 @@
+{
+  "generated_at_utc": "2026-04-18T02:36:15+00:00",
+  "run_id": "20260418T023501Z",
+  "run_dir": "artifacts/runs/20260418T023501Z",
+  "raw_sheet_csv": "artifacts/sheet_predictions_raw.csv",
+  "cleaned_sheet_csv": "artifacts/sheet_predictions_cleaned.csv",
+  "artifact_path": "artifacts/football_prediction_bundle.joblib",
+  "sheet_predictions_csv": "artifacts/upcoming_predictions_from_sheet.csv",
+  "history_csv": "artifacts/prediction_history.csv",
+  "history_rows": 708,
+  "rows_cleaned": 177,
+  "winner_accuracy_blended": 0.5017928387455179,
+  "over_under_accuracy_blended": 0.5715367910711581
+}
